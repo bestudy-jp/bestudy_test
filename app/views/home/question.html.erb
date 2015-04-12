@@ -1,0 +1,10 @@
+<h2><%= Question.find_by(pre_answer_id: @answer_id).body %></h2>
+
+<ul class="list-group">
+  <% Question.find_by(pre_answer_id: @answer_id).answer.each do |answer|%>
+
+  <a href="/home/question/<%= answer.id %>">
+    <li class="list-group-item"><%= answer.body %></li>
+  </a>
+  <% end %>
+</ul>

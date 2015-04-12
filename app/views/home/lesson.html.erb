@@ -1,0 +1,13 @@
+<h2>そんなあなたにぴったりの教材はこれ!!</h2>
+
+<p>あなたの診断結果は。。。。Facebookでシェアしよう。<img src="http://www.yoshimoto.co.jp/schedule/img/facebook.gif"></p>
+<% if Answer.find(@answer_id).lesson.length == 0 %>
+  あなたにぴったりの教材が見つかりませんでした。すみません。<br>
+    <a class="btn btn-primary">ここから</a>、講師陣にリクエストしましょう
+<% else %>
+    <ul class="list-group">
+      <% Answer.find(@answer_id).lesson.each do |le|%>
+        <li class="list-group-item"><%= le.title %></li>
+      <% end %>
+    </ul>
+<% end %>

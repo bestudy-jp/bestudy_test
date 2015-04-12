@@ -1,0 +1,2 @@
+module HogeHelper
+end
