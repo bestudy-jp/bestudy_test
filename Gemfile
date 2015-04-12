@@ -45,3 +45,6 @@ gem 'twitter-bootswatch-rails-helpers'
 gem 'therubyracer'
 
 gem 'pry-rails'
+
+gem 'font-awesome-rails'
+
