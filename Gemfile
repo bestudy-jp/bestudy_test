@@ -48,3 +48,7 @@ gem 'pry-rails'
 
 gem 'font-awesome-rails'
 
+
+gem 'omniauth-facebook'
+
+gem 'google-analytics-rails'
