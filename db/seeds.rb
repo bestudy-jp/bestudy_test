@@ -74,7 +74,37 @@ l_lisp = Lesson.create(title: "Lispで覚えるプログラミング")
 MatchRate.create(answer_id: a7.id , lesson_id: l_lisp.id ,rate: 1)
 
 
+# ビジネス・経済系のジャンル
+economy = Genre.create(name: "ビジネス・経済")
+Genre.create(name: "経済学・経済事情", parent_genre_id: economy.id)
+Genre.create(name: "産業研究",  parent_genre_id: economy.id)
+Genre.create(name: "マーケティング・セールス",  parent_genre_id: economy.id)
+Genre.create(name: "経理・アカウンティング",  parent_genre_id: economy.id)
+Genre.create(name: "金融・ファイナンス",  parent_genre_id: economy.id)
+Genre.create(name: "オペレーションズ",  parent_genre_id: economy.id)
+Genre.create(name: "マネジメント・人材管理",  parent_genre_id: economy.id)
+Genre.create(name: "確率・統計",  parent_genre_id: economy.id)
+Genre.create(name: "経営戦略",  parent_genre_id: economy.id)
+Genre.create(name: "経営学・キャリア・MBA",  parent_genre_id: economy.id)
+Genre.create(name: "実践経営・リーダーシップ",  parent_genre_id: economy.id)
+Genre.create(name: "IT",  parent_genre_id: economy.id)
 
+# コンピュータ・IT系のジャンル
+computer = Genre.create(name: "コンピュータ・IT")
+
+Genre.create(name: "入門書",  parent_genre_id: computer.id)
+Genre.create(name: "プログラミング",  parent_genre_id: computer.id)
+Genre.create(name: "アプリケーション",  parent_genre_id: computer.id)
+Genre.create(name: "OS",  parent_genre_id: computer.id)
+Genre.create(name: "Web作成・開発",  parent_genre_id: computer.id)
+Genre.create(name: "ネットワーク",  parent_genre_id: computer.id)
+Genre.create(name: "データベース",  parent_genre_id: computer.id)
+Genre.create(name: "パソコン・周辺機器",  parent_genre_id: computer.id)
+Genre.create(name: "モバイル・タブレット",  parent_genre_id: computer.id)
+Genre.create(name: "コンピュータサイエンス",  parent_genre_id: computer.id)
+Genre.create(name: "インターネット・eビジネス",  parent_genre_id: computer.id)
+Genre.create(name: "グラフィックス・DTP・音楽",  parent_genre_id: computer.id)
+Genre.create(name: "コンピュータアート",  parent_genre_id: computer.id)
 
 
 

@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
   validates :password, presence: false, on: :facebook_login
+  has_many :genre_user_relation
+  has_many :genre, through: :genre_user_relation
 
   def self.from_omniauth(auth)
     # emailの提供は必須とする
