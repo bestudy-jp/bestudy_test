@@ -13,9 +13,10 @@ class UsersController < ApplicationController
       fb       = ""
     end
     if result
-      # sign_in @user
+      session[:user_id] = @user.id
+
       flash[:success] = "#{fb}ログインしました。"
-      redirect_to '/home'
+      redirect_to '/home/question'
     else
       if fb.present?
         redirect_to auth_failure_path

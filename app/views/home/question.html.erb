@@ -1,4 +1,5 @@
 <h2><%= Question.find_by(pre_answer_id: @answer_id).body %></h2>
+<p><%= current_user.id %>さん</p>
 
 <ul class="list-group">
   <% Question.find_by(pre_answer_id: @answer_id).answer.each do |answer|%>
