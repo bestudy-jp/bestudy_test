@@ -49,8 +49,6 @@ test:
 #
 production:
   <<: *default
-  #database: smart-learn_production
-  #username: smart-learn
-  database: smart-learn_development
-  username: bestudy
+  database: smart-learn_production
+  username: smart-learn
   password: <%= ENV['SMART_LEARN_DATABASE_PASSWORD'] %>
