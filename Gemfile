@@ -30,10 +30,11 @@ gem 'spring',        group: :development
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+gem 'unicorn-worker-killer'
 
 # Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
+gem 'capistrano-rails', group: :development
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
@@ -52,3 +53,7 @@ gem 'font-awesome-rails'
 gem 'omniauth-facebook'
 
 gem 'google-analytics-rails'
+
+gem 'dotenv'
+gem 'dotenv-rails'
+
