@@ -106,6 +106,9 @@ Genre.create(name: "インターネット・eビジネス",  parent_genre_id: co
 Genre.create(name: "グラフィックス・DTP・音楽",  parent_genre_id: computer.id)
 Genre.create(name: "コンピュータアート",  parent_genre_id: computer.id)
 
+if TextBook.count <= 0
+  TextBook.generate_from_slideshare('http://www.slideshare.net/aratafuji/ss-46517831?qid=8f1a08c7-687e-4c35-9534-5b3d33f136ac&v=default&b=&from_search=1')
+end
 
 
 

@@ -31,3 +31,5 @@ bower.json
 .powenv
 
 *.swp
+public/uploads
+.DS_Store

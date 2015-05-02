@@ -48,6 +48,7 @@ gem 'twitter-bootswatch-rails-helpers'
 gem 'therubyracer'
 
 gem 'pry-rails'
+gem 'annotate'
 
 gem 'font-awesome-rails'
 
@@ -59,3 +60,5 @@ gem 'google-analytics-rails'
 gem 'dotenv'
 gem 'dotenv-rails'
 
+gem 'carrierwave'
+gem 'nokogiri'
