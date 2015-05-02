@@ -6,7 +6,7 @@ worker_processes 1
 working_directory "#{app_path}/current/"
 
 listen "#{app_shared_path}/tmp/sockets/unicorn.sock"
-listen 80, tcp_nopush: true
+listen 8000, tcp_nopush: true
 
 stdout_path "#{app_shared_path}/log/unicorn.stdout.log"
 stderr_path "#{app_shared_path}/log/unicorn.stderr.log"
