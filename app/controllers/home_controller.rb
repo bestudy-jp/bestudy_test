@@ -2,6 +2,16 @@ class HomeController < ApplicationController
   def index
   end
 
+  def genre
+  end
+
+  def done
+    @user = current_user
+    params[:genre].each{|k,v|
+      GenreUserRelation.create(genre_id: k.to_i, user_id: @user.id)
+    }
+  end
+
   def question
     if params[:id].nil?
       @answer_id = 0

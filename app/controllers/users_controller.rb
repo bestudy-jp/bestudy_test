@@ -16,7 +16,7 @@ class UsersController < ApplicationController
       session[:user_id] = @user.id
 
       flash[:success] = "#{fb}ログインしました。"
-      redirect_to '/home/question'
+      redirect_to '/home/genre'
     else
       if fb.present?
         redirect_to auth_failure_path

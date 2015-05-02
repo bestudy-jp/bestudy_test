@@ -1,11 +1,17 @@
-<h2><%= Question.find_by(pre_answer_id: @answer_id).body %></h2>
-<p><%= current_user.id %>さん</p>
-
-<ul class="list-group">
-  <% Question.find_by(pre_answer_id: @answer_id).answer.each do |answer|%>
-
-  <a href="/home/question/<%= answer.id %>">
-    <li class="list-group-item"><%= answer.body %></li>
-  </a>
-  <% end %>
-</ul>
+<h2>興味のある分野を選択してください</h2>
+<form action="/home/done" method="post">
+<% Genre.where(parent_genre_id: nil).each do |parent| %>
+  <h3><%= parent.name %></h3>
+  <ul class="list-group">
+    <% Genre.where(parent_genre_id: parent.id).each do |leaf| %>
+      <li class="list-group-item">
+        <span class="checkbox">
+          <label>
+            <%= check_box 'genre', leaf.id , {}, true, false %> <%= leaf.name %>
+          </label>
+        </span>
+    </li>
+    <% end %>
+  </ul>
+<% end %>
+<button type="submit" class="btn btn-default">決定</button>
