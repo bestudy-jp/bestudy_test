@@ -53,3 +53,7 @@ gem 'font-awesome-rails'
 gem 'omniauth-facebook'
 
 gem 'google-analytics-rails'
+
+gem 'dotenv'
+gem 'dotenv-rails'
+

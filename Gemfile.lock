@@ -49,6 +49,9 @@ GEM
     coffee-script-source (1.9.1)
     colorize (0.7.5)
     commonjs (0.2.7)
+    dotenv (2.0.0)
+    dotenv-rails (2.0.0)
+      dotenv (= 2.0.0)
     erubis (2.7.0)
     execjs (2.4.0)
     faraday (0.9.1)
@@ -189,6 +192,8 @@ PLATFORMS
 DEPENDENCIES
   capistrano-rails
   coffee-rails (~> 4.0.0)
+  dotenv
+  dotenv-rails
   font-awesome-rails
   google-analytics-rails
   jbuilder (~> 2.0)

@@ -34,7 +34,7 @@
     <div class="row white">
       <h2 class="centered">ABOUT US</h2>
       <hr>
-      <div class="col-md-6"> <img class="img-responsive" src="/assets/about/about1.jpg" align=""> </div>
+      <div class="col-md-6"> <%= image_tag 'about/about1.jpg' %> </div>
       <div class="col-md-6">
         <h3>私達は</h3>
         <p>私達は、教育と人工知能の研究者で、心理学、脳科学にも精通しています。</p>
@@ -55,7 +55,6 @@
       <h2 class="centered">OUR SERVICES</h2>
       <hr>
       <div class="col-lg-8 col-lg-offset-2">
-        <p class="large">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
       </div>
       <div class="col-lg-4 callout"> <i class="fa fa-lightbulb-o fa-3x"></i>
         <h3>人工知能が最も効率の良い<br>学習プロセスを設計</h3>
@@ -81,12 +80,12 @@
     <div class="row centered">
       <h2 class="centered">MEET OUR TEAM</h2>
       <hr>
-      <div class="col-lg-6 centered"> <img class="img img-circle" src="/assets/team/team01.jpg" height="120px" width="120px" alt="">
+      <div class="col-lg-6 centered"> <%= image_tag 'team/team01.jpg', width: 120, height: 120, class: 'img img-circle' %>
         <h4><strong>Kenji</strong></h4>
         <p>慶応大学理工学部物理情報工学科3年<br />
 イリノイ大学留学中にシカゴでAR(拡張現実)のスタートアップにかかわる。</p>
         <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> </div>
-      <div class="col-lg-6 centered"> <img class="img img-circle" src="/assets/team/team02.jpg" height="120px" width="120px" alt="">
+      <div class="col-lg-6 centered"> <%= image_tag 'team/team02.jpg', width: 120, height: 120, class: 'img img-circle' %>
         <h4><b>Sanryuu</b></h4>
         <p>EmacsとRubyとLispをこよなく愛する<br>スクラムマスターエンジニア</p>
         <a href="#"><i class="fa fa-twitter"></i></a> <a href="#"><i class="fa fa-facebook"></i></a> <a href="#"><i class="fa fa-linkedin"></i></a> </div>
@@ -118,7 +117,6 @@
     </div>
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 centered">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
         <form id="contact" method="post" class="form" role="form">
           <div class="row">
             <div class="col-xs-6 col-md-6 form-group">
