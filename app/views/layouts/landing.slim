@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    title Bestudy
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    = csrf_meta_tags
+
+    = analytics_init
+
+    link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css"
+    link href="http://fonts.googleapis.com/css?family=Raleway:400,300,700" rel="stylesheet" type="text/css"
+
+    /[if lt IE 9]
+      script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"
+      script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"
+
+  body data-spy="scroll" data-offset="0" data-target="#navbar-main"
+    = yield

@@ -1,0 +1,125 @@
+#navbar-main
+  .navbar.navbar-inverse.navbar-fixed-top
+    .container
+      .navbar-header
+        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-collapse"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+        a.navbar-brand href="#home" Bestudy
+      .navbar-collapse.collapse
+        ul.nav.navbar-nav.navbar-right
+          li
+            a.smoothScroll href="#headerwrap" Home
+          li
+            a.smoothScroll href="#about" About
+          li
+            a.smoothScroll href="#services" Services
+          li
+            a.smoothScroll href="#team" Team
+          li
+            a.smoothScroll href="#contact" Contact
+
+#headerwrap name="home"
+  header.clearfix
+    i.fa.fa-dashboard.icon
+    h1 あなたにとって最高の学習を人工知能が提供
+    p 学ぶ意欲のある人が効率的に学べ、やる気を成果に変換するお手伝いをします。
+    a.smoothScroll.btn.btn-lg.text-center href="/auth/facebook" 試してみる
+
+#about name="about"
+  .container
+    .row.white
+      h2.centered ABOUT US
+      hr
+      .col-md-6 = image_tag 'about/about1.jpg'
+      .col-md-6
+        h3 私達は
+        p 私たちは人工知能と教育工学の研究者達です。
+        h3 何がすごいのか
+        p
+          | 私たちは人工知能と教育工学を扱う専門家集団です。
+          | 「何かに向かって努力する人達を応援したい。この世の中をよ
+          | りワクワクする世界にしたい。」
+          | という理念をもとに人々の学習を人工知能と教育工学の技術
+          | で、全く新しい学習体験を提供します。
+    a.smoothScroll.btn.btn-lg.center-block href="/auth/facebook" 試してみる
+
+#services name="services"
+  .container
+    .row
+      h2.centered OUR SERVICES
+      hr
+      .col-lg-8.col-lg-offset-2
+      .col-lg-4.callout
+        i.fa.fa-lightbulb-o.fa-3x
+        h3
+          | 人工知能が最も効率の良い
+          br
+          | 学習プロセスを設計
+        p いくつかの質問に答えるだけ、あなたにとって最も効率よい学習方法を提示。個人個人の最適なコースで学習を効率化。
+      .col-lg-4.callout
+        i.fa.fa-copy.fa-3x
+        h3
+          | １コマ１分で読めるから
+          br
+          | いつでもどこでも学習可能
+        p それぞれの授業は1コマ1分の小クラスで構成されているからスキマ時間でどこでも気軽に学習可能
+      .col-lg-4.callout
+        i.fa.fa-tasks.fa-3x
+        h3
+          | 利用頻度や進捗率から
+          br
+          | 最適なプランを常に提案
+        p 使えば使うほどあなたの特性を理解し、常に最適なプランを提案
+    a.smoothScroll.btn.btn-lg href="/auth/facebook" 試してみる
+
+#contact name="contact"
+  .container
+    .row
+      h2.centered CONTACT US
+      hr
+      .col-md-4.centered
+        i.fa.fa-map-marker.fa-2x
+        p 慶應大学矢上キャンパス24棟518号室
+      .col-md-4
+        i.fa.fa-envelope-o.fa-2x
+        p kenji.t.dream＠gmail.com
+      .col-md-4
+        i.fa.fa-phone.fa-2x
+        p 080-2180-1575
+    .row
+      .col-lg-8.col-lg-offset-2.centered
+        form.form#contact method="post" role="form"
+          .row
+            .col-xs-6.col-md-6.form-group
+              input.form-control#name name="name" placeholder="Name" type="text" required="required"
+            .col-xs-6.col-md-6.form-group
+              input.form-control#email name="email" placeholder="Email" type="email" required="required"
+          textarea.form-control#message name="message" placeholder="Message" rows="5"
+          .row
+            .col-xs-12.col-md-12
+              button.btn.btn.btn-lg type="submit" Send Message
+    a.smoothScroll.btn.btn-lg href="/auth/facebook" 試してみる
+
+#footerwrap
+  .container
+    .row
+      .col-md-8
+        span.copyright
+          | Copyright &copy; 2015 Bestudy.
+          a href="http://www.templategarden.com" rel="nofollow" TemplateGarden
+      .col-md-4
+        ul.list-inline.social-buttons
+          li
+            a href="#"
+              i.fa.fa-twitter
+          li
+            a href="#"
+              i.fa.fa-facebook
+          li
+            a href="#"
+              i.fa.fa-google-plus
+          li
+            a href="#"
+              i.fa.fa-linkedin

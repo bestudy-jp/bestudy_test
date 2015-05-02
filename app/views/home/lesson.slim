@@ -1,0 +1,13 @@
+h2 そんなあなたにぴったりの教材はこれ!!
+
+p あなたの診断結果は。。。。Facebookでシェアしよう。
+  = image_tag 'http://www.yoshimoto.co.jp/schedule/img/facebook.gif'
+- if Answer.find(@answer_id).lesson.length == 0
+  | あなたにぴったりの教材が見つかりませんでした。すみません。
+  br
+  a.btn.btn-primary ここから
+  | 、講師陣にリクエストしましょう
+- else
+  ul.list-group
+    - Answer.find(@answer_id).lesson.each do |le|
+      li.list-group-item = le.title

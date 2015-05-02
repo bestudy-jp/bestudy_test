@@ -1,0 +1,13 @@
+h2 興味のある分野を選択してください
+= form_tag( { controller: :home, action: :done}) do
+  - Genre.where(parent_genre_id: nil).each do |parent|
+    h3 = parent.name
+    ul.list-group
+      - Genre.where(parent_genre_id: parent.id).each do |leaf|
+        li.list-group-item
+          span.checkbox
+            label
+              = check_box 'genre', leaf.id , {}, true, false
+                = leaf.name
+    = submit_tag '決定'
+    br

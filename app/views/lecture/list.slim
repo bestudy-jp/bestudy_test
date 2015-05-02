@@ -1,0 +1,8 @@
+.col-xs-12.col-sm-6.col-md-3
+  - @data.each do |d|
+    a href="/hoge/index"
+      .box clearfix
+        .col-xs-4.col-sm-6
+          img.img-responsive src=(d[:pic]) alt="" style="width: 100%;vertical-align:middle;"
+        h4.col-xs-8.col-sm-12 = d[:title]
+        .col-xs-8.col-sm-12 = d[:sentence]
