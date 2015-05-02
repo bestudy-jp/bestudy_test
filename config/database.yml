@@ -51,4 +51,4 @@ production:
   <<: *default
   database: smart-learn_production
   username: smart-learn
-  password: <%= ENV['SMART-LEARN_DATABASE_PASSWORD'] %>
+  password: <%= ENV['SMART_LEARN_DATABASE_PASSWORD'] %>
