@@ -48,9 +48,37 @@ class HomeController < ApplicationController
         selections: question.answers_scheme
       )
     else
-      @messages.push(
-        content: 'ごめんなさい、現在鋭意製作中です！'
-      )
+      choices.map!(&:to_i)
+      lessons = {}
+      Answer.where(id: choices).includes(:match_rates).each do |answer|
+        answer.match_rates.each do |mr|
+          lessons[mr.lesson_id] ||= 0
+          lessons[mr.lesson_id] += mr.rate
+        end
+      end
+      lesson_hashes = []
+      lessons.keys.each do |lesson_id|
+        lesson_hashes.push(id: lesson_id, rate: lessons[lesson_id])
+      end
+      lesson_hashes.sort! do |a, b|
+        a[:rate] <=> b[:rate]
+      end
+      lesson_hashes.reverse!
+      lesson_titles = []
+      lesson_hashes.each do |lesson|
+        break if lesson_titles.length >= 3
+        lesson_titles.push Lesson.find(lesson[:id]).title
+      end
+
+      if lesson_titles.length > 0
+        @messages.push(
+          content: 'おすすめのレッスンは、' + lesson_titles.join(', ') + 'です！'
+        )
+      else
+        @messages.push(
+          content: 'おすすめのレッスンが見つかりませんでした。ごめんね。'
+        )
+      end
     end
     render layout: false
   end

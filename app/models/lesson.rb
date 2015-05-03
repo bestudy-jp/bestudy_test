@@ -11,5 +11,5 @@
 #
 
 class Lesson < ActiveRecord::Base
-  has_many :match_rate
+  has_many :match_rates
 end
