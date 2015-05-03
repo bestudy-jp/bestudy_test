@@ -21,7 +21,7 @@ class @Talk
     $('.talk-container > ul').append(selection_dom) if selections?
     $('.js-answer-item').off('click').on('click', (e) =>
       target = $(e.currentTarget)
-      $('.js-answer-item').off('click')
+      $('.js-answer-item').off('click').removeClass('js-answer-item')
       target.addClass('active')
       @choices.push target.attr('data-id')
       $('#input-choices').val(@choices.join(','))

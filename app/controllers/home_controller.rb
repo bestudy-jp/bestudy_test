@@ -49,7 +49,7 @@ class HomeController < ApplicationController
       )
     else
       @messages.push(
-        content: 'ごめんなさい・・そんな分野は知りません・・'
+        content: 'ごめんなさい、現在鋭意製作中です！'
       )
     end
     render layout: false

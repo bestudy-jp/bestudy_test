@@ -4,7 +4,7 @@ window.talk.appendMessage(false, '<%= @self_message %>')
 
 <% @messages.each do |message| %>
   <% content = message[:content] %>
-  <% selections = message[:selections] %>
+  <% selections = message[:selections] || [] %>
   <% delay = message[:delay] %>
   <% if selections %>
 selections = JSON.parse('<%= raw JSON.generate(selections) %>')
