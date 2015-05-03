@@ -10,6 +10,16 @@
 #
 
 class Question < ActiveRecord::Base
-  has_many :answer, foreign_key: :pre_answer_id
-  has_many :answer
+  has_many :pre_answers, foreign_key: :pre_answer_id, class_name: 'Answer'
+  has_many :answers
+
+  scope :parent_question, -> { where('pre_answer_id = ? OR pre_answer_id = ?', nil, 0) }
+
+  def answers_scheme
+    ret = []
+    answers.each do |answer|
+      ret.push(id: answer.id, name: answer.body)
+    end
+    ret
+  end
 end

@@ -1,0 +1,44 @@
+class @Talk
+  choices: []
+  appendMessage: (robot, message, selections) =>
+    chat_dom = $('<li>').addClass('chat')
+    chat_dom.addClass('self') if robot == false
+    chat_dom.append($('<img>').attr('src', '<%= asset_path('robot.png') %>')) if robot == true
+    message_dom = $('<div>').addClass('message').text(message)
+    chat_dom.append(message_dom)
+    if selections?
+      question_selection_dom = $('<ul>').addClass('question-selection')
+      for item in selections
+        question_selection_dom.append($('<li>').text(item.name))
+      message_dom.append(question_selection_dom)
+      selection_dom = $('<li>').addClass('select')
+      answer_selection_dom = $('<ul>').addClass('answer-selection')
+      for item in selections
+        item_dom = $('<li>').text(item.name).addClass('js-answer-item').attr('data-value', item.name).attr('data-id', item.id)
+        answer_selection_dom.append(item_dom)
+      selection_dom.append(answer_selection_dom)
+    $('.talk-container > ul').append(chat_dom)
+    $('.talk-container > ul').append(selection_dom) if selections?
+    $('.js-answer-item').off('click').on('click', (e) =>
+      target = $(e.currentTarget)
+      $('.js-answer-item').off('click')
+      target.addClass('active')
+      @choices.push target.attr('data-id')
+      $('#input-choices').val(@choices.join(','))
+      $('#form-judge').submit()
+    )
+    boombox.get('talk-receive').play()
+
+boombox.setup()
+options = {
+  src: [
+    {
+      media: 'audio/mpeg',
+      path: '<%= asset_path('talk-receive.mp3') %>'
+    }
+  ]
+}
+boombox.load('talk-receive', options, (err, audio) ->
+)
+
+window.talk = new Talk()

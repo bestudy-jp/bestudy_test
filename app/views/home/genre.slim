@@ -1,35 +1,20 @@
 .talk-container
   h2 ベスタくん
   ul
-    li.chat
-      = image_tag 'robot.png'
-      .message
-        | はじめまして。ぼくはベスタくんです。
-        br
-        | 勉強熱心なあなたの手助けにきました。
-    li.chat
-      = image_tag 'robot.png'
-      .message
-        | 興味のある分野は？
-        ul.question-selection
-          - Genre.where(parent_genre_id: nil).each do |genre|
-            li = genre.name
 
-    li.select
-      ul.answer-selection
-        - Genre.where(parent_genre_id: nil).each do |genre|
-          li = genre.name
+  = form_tag(judge_path, id: 'form-judge', remote: true) do
+    = hidden_field_tag :choices, '', id: 'input-choices'
 
+javascript:
+  answers = [];
+  answers = JSON.parse('#{ raw JSON.generate(Question.parent_question.shuffle.first.answers_scheme) }');
+  question_body = '#{ Question.parent_question.first.body }';
 
-  = form_tag(controller: :home, action: :done) do
-    - Genre.where(parent_genre_id: nil).each do |parent|
-      h3 = parent.name
-      ul.list-group
-        - Genre.where(parent_genre_id: parent.id).each do |leaf|
-          li.list-group-item
-            span.checkbox
-              label
-                = check_box 'genre', leaf.id , {}, true, false
-                = leaf.name
-      = submit_tag '決定'
-      br
+coffee:
+  setTimeout(->
+    window.talk.appendMessage(true, 'はじめまして。ぼくはベスタくんです。\n勉強熱心なあなたの手助けにきました。')
+  , 2000)
+  setTimeout(->
+    window.talk.appendMessage(true, question_body, answers)
+  , 4000)
+

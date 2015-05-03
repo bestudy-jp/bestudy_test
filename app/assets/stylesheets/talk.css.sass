@@ -1,5 +1,8 @@
 @import 'compass'
 
+$message-background-color: #2B4133
+$message-self-background-color: rgb(87, 67, 22)
+
 .talk-container
   h2
     margin: 0
@@ -11,8 +14,7 @@
 
   ul
     list-style: none
-    padding-left: 0
-    padding: 5px
+    padding: 8px 5px 5px 0
     li.chat
       position: relative
       margin-bottom: 10px
@@ -24,11 +26,12 @@
         left: 0
         top: 0
       .message
+        white-space: pre-line
         display: inline-block
         margin-left: 40px
         width: calc(100% - 40px)
         padding: 2px 8px
-        background-color: #395644
+        background-color: $message-background-color
         color: rgb(236, 236, 236)
         @include box-shadow(1px 1px rgb(91, 161, 94))
         &:before
@@ -37,11 +40,24 @@
           top: 6px
           left: 20px
           border: 12px solid transparent
-          border-right: 12px solid #395644
+          border-right: 12px solid $message-background-color
         ul.question-selection
           font-size: 14px
           list-style: circle
           padding-left: 30px
+      &.self
+        .message
+          margin-left: 40px
+          margin-right: 20px
+          width: calc(100% - 60px)
+          background-color: $message-self-background-color
+          @include box-shadow(1px 1px rgb(157, 129, 87))
+          &:before
+            left: auto
+            right: 8px
+            top: 2px
+            border-right: 0
+            border-left: 12px solid $message-self-background-color
 
     li.select
       text-align: center
@@ -49,8 +65,13 @@
       ul.answer-selection
         li
           padding: 4px 0
-          background-color: #395644
+          background-color: $message-background-color
           margin-bottom: 1px
           @include border-radius(2px)
+          cursor: pointer
+          &.active
+            border: 3px solid rgb(104, 176, 121)
+            background-color: rgb(23, 68, 32)
+            font-weight: bold
 
 

@@ -27,4 +27,31 @@ class HomeController < ApplicationController
   def lesson
     @answer_id = params[:id]
   end
+
+  def judge
+    choices = params[:choices].split(',')
+    @messages = []
+
+    answer = Answer.where(id: choices.last.to_i).first
+    unless answer
+      @messages.push(
+        content: 'そんな分野は知りません・・・'
+      )
+      return
+    end
+    @self_message = answer.body + '！'
+    question = Question.where(pre_answer_id: answer.id).first
+    if question
+      @messages.push(
+        delay: 1000,
+        content: question.body,
+        selections: question.answers_scheme
+      )
+    else
+      @messages.push(
+        content: 'ごめんなさい・・そんな分野は知りません・・'
+      )
+    end
+    render layout: false
+  end
 end
