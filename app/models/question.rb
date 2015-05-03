@@ -10,10 +10,12 @@
 #
 
 class Question < ActiveRecord::Base
-  has_many :pre_answers, foreign_key: :pre_answer_id, class_name: 'Answer'
+  belongs_to :pre_answer, foreign_key: :pre_answer_id, class_name: 'Answer'
   has_many :answers
 
   scope :parent_question, -> { where('pre_answer_id = ? OR pre_answer_id = ?', nil, 0) }
+
+  accepts_nested_attributes_for :answers, allow_destroy: true
 
   def answers_scheme
     ret = []

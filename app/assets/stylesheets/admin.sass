@@ -1,0 +1,42 @@
+@import 'compass'
+
+.side-bar
+  position: absolute
+  top: 61px
+  left: 0
+  bottom: 10px
+  overflow: hidden
+  overflow-y: auto
+  width: 280px
+  &.menu
+    padding: 5px
+    .list-group
+      margin-top: 1px
+    h4
+      display: inline-block
+      margin-top: 5px
+
+.content
+  position: absolute
+  min-width: 519px
+  left: 281px
+  top: 61px
+  right: 0
+  bottom: 10px
+  overflow: hidden
+  overflow-y: auto
+  &.content-panel-container
+    overflow-y: hidden
+  &.full
+    left: 0
+
+ul.answers
+  list-style: none
+  padding-left: 0
+  li.nested-fields
+    input[type=text]
+      width: 500px
+      display: inline-block
+      margin-right: 10px
+    a.btn
+      display: inline-block

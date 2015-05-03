@@ -1,0 +1,39 @@
+- unless @question
+  - @question = Question.new
+  - @title = '質問の新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_questions_path
+- else
+  - @title = '質問の編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_question_path
+
+= form_for( @question, url: form_for_path, :html => { :class => :form, :id => 'formQuestion' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          .form-group
+            = f.label :body, '質問内容'
+            = f.text_area :body, :class => 'form-control'
+          .form-group
+            = f.label :pre_answer_id, 'どの答えの後に質問するか'
+            = f.select :pre_answer_id, options_from_collection_for_select(Answer.all, :id, :body, @question.pre_answer_id)
+          h5 質問の選択肢
+
+          .form-group
+            ul.answers
+              = f.fields_for :answers do |af|
+                = render 'answer_fields', f: af
+              li
+                = link_to_add_association '選択肢を追加', f, :answers, class: 'btn btn-xs btn-success'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formQuestion'

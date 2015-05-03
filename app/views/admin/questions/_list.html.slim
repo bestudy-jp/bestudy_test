@@ -1,0 +1,42 @@
+h4 質問の管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_question_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+
+div.data-list
+  = paginate @questions
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th 質問内容
+          th 流入選択肢
+          th 選択肢
+      tbody
+        - @questions.each do |question|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_question_path( question.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_question_path( question.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = question.id
+            td
+              = question.body
+            td.center
+              = question.pre_answer.body if question.pre_answer
+            td
+              - question.answers.pluck(:body).each do |answer|
+                = answer
+                br
+
+  = paginate @questions

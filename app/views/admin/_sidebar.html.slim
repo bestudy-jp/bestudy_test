@@ -1,0 +1,7 @@
+.side-bar.menu class=( Rails.env.production? ? 'production' : '' )
+  h4 管理メニュー
+  .list-group
+    = active_link_to( admin_questions_path, class: 'list-group-item' ) do
+      h4.list-group-item-heading 質問
+      p.list-group-item-text
+        | 質問の管理を行います。

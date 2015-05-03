@@ -16,3 +16,4 @@
 //= require slate
 //= require boombox
 //= require talk
+//= require cocoon

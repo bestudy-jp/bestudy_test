@@ -64,3 +64,8 @@ gem 'dotenv-rails'
 
 gem 'carrierwave'
 gem 'nokogiri'
+gem 'cocoon'
+gem 'ransack'
+gem 'draper'
+gem 'kaminari'
+gem 'active_link_to'
