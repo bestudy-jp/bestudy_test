@@ -5,10 +5,12 @@
   = form_tag(judge_path, id: 'form-judge', remote: true) do
     = hidden_field_tag :choices, '', id: 'input-choices'
 
+  - question = Question.parent_questions.shuffle.first
+
 javascript:
   answers = [];
-  answers = JSON.parse('#{ raw JSON.generate(Question.parent_question.shuffle.first.answers_scheme) }');
-  question_body = '#{ Question.parent_question.first.body }';
+  answers = JSON.parse('#{ raw JSON.generate(question.answers_scheme) }');
+  question_body = '#{ question.body }';
 
 coffee:
   setTimeout(->

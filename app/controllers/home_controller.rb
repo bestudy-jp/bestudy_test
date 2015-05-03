@@ -40,7 +40,8 @@ class HomeController < ApplicationController
       return
     end
     @self_message = answer.body + '！'
-    question = Question.where(pre_answer_id: answer.id).first
+    question_pre = QuestionPreAnswer.where(answer_id: answer.id).shuffle.first
+    question = Question.where(id: question_pre.question_id).first if question_pre
     if question
       @messages.push(
         delay: 1000,
