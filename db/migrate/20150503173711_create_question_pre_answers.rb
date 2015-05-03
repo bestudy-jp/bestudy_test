@@ -7,7 +7,7 @@ class CreateQuestionPreAnswers < ActiveRecord::Migration
       t.timestamps
     end
     Question.all.each do |question|
-      if question.pre_answer_id > 0 && Answer.where(id: question.pre_answer_id).count > 0
+      if question.pre_answer_id && question.pre_answer_id > 0 && Answer.where(id: question.pre_answer_id).count > 0
         QuestionPreAnswer.create(question_id: question.id, answer_id: question.pre_answer_id)
       end
     end
