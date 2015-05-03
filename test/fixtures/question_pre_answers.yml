@@ -1,13 +1,12 @@
 # == Schema Information
 #
-# Table name: inquiries
+# Table name: question_pre_answers
 #
-#  id         :integer          not null, primary key
-#  name       :string(255)
-#  email      :string(255)
-#  message    :text
-#  created_at :datetime
-#  updated_at :datetime
+#  id          :integer          not null, primary key
+#  question_id :integer          not null
+#  answer_id   :integer          not null
+#  created_at  :datetime
+#  updated_at  :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

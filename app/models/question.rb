@@ -2,20 +2,21 @@
 #
 # Table name: questions
 #
-#  id            :integer          not null, primary key
-#  body          :text
-#  pre_answer_id :integer
-#  created_at    :datetime
-#  updated_at    :datetime
+#  id         :integer          not null, primary key
+#  body       :text
+#  created_at :datetime
+#  updated_at :datetime
 #
 
 class Question < ActiveRecord::Base
-  belongs_to :pre_answer, foreign_key: :pre_answer_id, class_name: 'Answer'
+  has_many :question_pre_answers
+  has_many :pre_answers, through: :question_pre_answers, source: :answer
   has_many :answers
 
   scope :parent_question, -> { where('pre_answer_id = ? OR pre_answer_id = ?', nil, 0) }
 
   accepts_nested_attributes_for :answers, allow_destroy: true
+  accepts_nested_attributes_for :question_pre_answers, allow_destroy: true
 
   def answers_scheme
     ret = []

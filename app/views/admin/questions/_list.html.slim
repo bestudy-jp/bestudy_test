@@ -33,7 +33,9 @@ div.data-list
             td
               = question.body
             td.center
-              = question.pre_answer.body if question.pre_answer
+              - question.pre_answers.each do |answer|
+                = answer.body
+                br
             td
               - question.answers.pluck(:body).each do |answer|
                 = answer

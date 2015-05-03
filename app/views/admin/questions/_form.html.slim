@@ -24,7 +24,12 @@
             = f.text_area :body, :class => 'form-control'
           .form-group
             = f.label :pre_answer_id, 'どの答えの後に質問するか'
-            = f.select :pre_answer_id, options_from_collection_for_select(Answer.all, :id, :body, @question.pre_answer_id)
+            ul.answers
+              = f.fields_for :question_pre_answers do |qpaf|
+                = render 'question_pre_answer_fields', f: qpaf
+              li
+                = link_to_add_association '流入元を追加', f, :question_pre_answers, class: 'btn btn-xs btn-success'
+
           h5 質問の選択肢
 
           .form-group

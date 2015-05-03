@@ -1,0 +1,8 @@
+li.nested-fields
+  .form-group
+    - if f.object
+      = f.select :answer_id, options_from_collection_for_select(Answer.all, :id, :body, f.object.answer_id), {}, class: 'form-control'
+    - else
+      = f.select :answer_id, options_from_collection_for_select(Answer.all, :id, :body), {}, class: 'form-control'
+
+    = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'
