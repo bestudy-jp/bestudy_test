@@ -1,3 +1,5 @@
+@import 'compass';
+
 html, button, input, select, textarea {
 	color: #222;
 }
@@ -68,10 +70,6 @@ body {
 }
 .col-md-4 {
 	padding-bottom: 20px;
-}
-.row {
-	margin-right: 0px;
-	margin-left: -15px;
 }
 .modal-header {
 	background: #ffbf00;
@@ -210,7 +208,6 @@ a:before, a:after {
 	background-attachment: relative;
 	background-position: center center;
 	min-height: 650px;
-	width: 100%;
 	-webkit-background-size: 100%;
 	-moz-background-size: 100%;
 	-o-background-size: 100%;
@@ -522,11 +519,63 @@ body .header {
 }
 
 @media screen and (max-width:769px) {
-#headerwrap h1 {
-	font-size: 80px;
+#headerwrap {
+  padding-bottom: 20px;
+  min-height: 550px;
+  h1 {
+    font-size: 27px;
+    letter-spacing: inherit;
+  }
+  p {
+    font-size: 20px;
+    line-height: 24px;
+    padding: 0 10px;
+  }
+  header i.icon.fa-dashboard {
+    font-size: 60px;
+    margin-top: 0;
+    padding-bottom: 0;
+  }
 }
-#headerwrap p {
-	font-size: 30px;
-	line-height: 38px;
+#about {
+  padding: 0;
+  hr {
+    margin: 0;
+  }
+  img {
+    margin-top: 20px;
+  }
+  p {
+    padding-top: 0;
+  }
+  .btn.btn-lg {
+    border: 0;
+  }
+}
+#services {
+  padding: 0;
+  hr {
+    margin: 0;
+  }
+  p {
+    padding: 0 10px;
+  }
+  .callout {
+    padding-top: 30px;
+  }
+}
+#contact {
+  padding: 0;
+  hr {
+    margin: 0;
+  }
+  hr+.col-md-4 {
+    margin-top: 30px;
+  }
+}
+.btn-try {
+  border: 0;
+  width: 100%;
+  background-color: #2b2b2b;
 }
 }
