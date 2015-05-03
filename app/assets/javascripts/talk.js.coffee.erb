@@ -15,8 +15,8 @@ class @Talk
     $('.talk-container > ul').append(chat_dom)
     if selections?
       $('body').append($('<div>').addClass('select-container').append(answer_selection_dom))
-      if $('.talk-container').height() <= window.screen.height - answer_selection_dom.height() - 40
-        $('.talk-container').css('padding-bottom', window.screen.height - $('.talk-container').height() - answer_selection_dom.height() - 40)
+      if $('.talk-container').height() <= $(window).height() - answer_selection_dom.height() - 40
+        $('.talk-container').css('padding-bottom', $(window).height() - $('.talk-container').height() - answer_selection_dom.height() - 40)
       else
         $('.talk-container').css('padding-bottom', 'inherit')
     $('.js-answer-item').off('click').on('click', (e) =>
