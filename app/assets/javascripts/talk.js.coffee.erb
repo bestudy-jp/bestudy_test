@@ -28,6 +28,7 @@ class @Talk
       $('#form-judge').submit()
     )
     boombox.get('talk-receive').play()
+    $('body').scrollTop(chat_dom.offset().top)
 
 boombox.setup()
 options = {
