@@ -7,18 +7,18 @@ class @Talk
     message_dom = $('<div>').addClass('message').text(message)
     chat_dom.append(message_dom)
     if selections?
-      question_selection_dom = $('<ul>').addClass('question-selection')
-      for item in selections
-        question_selection_dom.append($('<li>').text(item.name))
-      #message_dom.append(question_selection_dom)
-      selection_dom = $('<li>').addClass('select')
+      $('.select-container').remove()
       answer_selection_dom = $('<ul>').addClass('answer-selection')
       for item in selections
         item_dom = $('<li>').text(item.name).addClass('js-answer-item').attr('data-value', item.name).attr('data-id', item.id)
         answer_selection_dom.append(item_dom)
-      selection_dom.append(answer_selection_dom)
     $('.talk-container > ul').append(chat_dom)
-    $('.talk-container > ul').append(selection_dom) if selections?
+    if selections?
+      $('body').append($('<div>').addClass('select-container').append(answer_selection_dom))
+      if $('.talk-container').height() <= window.screen.height - answer_selection_dom.height() - 40
+        $('.talk-container').css('padding-bottom', window.screen.height - $('.talk-container').height() - answer_selection_dom.height() - 40)
+      else
+        $('.talk-container').css('padding-bottom', 'inherit')
     $('.js-answer-item').off('click').on('click', (e) =>
       target = $(e.currentTarget)
       $('.js-answer-item').off('click').removeClass('js-answer-item')

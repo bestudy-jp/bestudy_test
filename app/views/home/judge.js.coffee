@@ -13,3 +13,7 @@ setTimeout(->
   window.talk.appendMessage(true, '<%= content %>', selections)
 , <%= delay %>)
 <% end %>
+if $('.talk-container').height() <= window.screen.height - $('.select-container').height() - 20
+  $('.talk-container').css('padding-bottom', window.screen.height - $('.talk-container').height() - $('.select-container').height() - 20)
+else
+  $('.talk-container').css('padding-bottom', 'inherit')

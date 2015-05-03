@@ -4,6 +4,7 @@ $message-background-color: #2B4133
 $message-self-background-color: rgb(87, 67, 22)
 
 .talk-container
+  position: relative
   h2
     margin: 0
     padding: 4px 10px
@@ -59,19 +60,26 @@ $message-self-background-color: rgb(87, 67, 22)
             border-right: 0
             border-left: 12px solid $message-self-background-color
 
-    li.select
-      text-align: center
-      margin: 30px 0
-      ul.answer-selection
-        li
-          padding: 4px 0
-          background-color: $message-background-color
-          margin-bottom: 1px
-          @include border-radius(2px)
-          cursor: pointer
-          &.active
-            border: 3px solid rgb(104, 176, 121)
-            background-color: rgb(23, 68, 32)
-            font-weight: bold
+.select-container
+  text-align: center
+  margin: 20px 0 0 0
+  width: 100%
+  ul.answer-selection
+    list-style: none
+    padding-left: 0
+    width: 90%
+    display: inline-block
+    li
+      padding: 4px 0
+      background-color: #8E9060
+      color: white
+      font-weight: bold
+      margin-bottom: 1px
+      @include border-radius(2px)
+      cursor: pointer
+      &.active
+        border: 3px solid rgb(104, 176, 121)
+        background-color: rgb(23, 68, 32)
+        font-weight: bold
 
 
