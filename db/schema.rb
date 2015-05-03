@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150502171030) do
+ActiveRecord::Schema.define(version: 20150503013124) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 20150502171030) do
     t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "detail_hash"
   end
 
 end

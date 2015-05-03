@@ -54,6 +54,7 @@ gem 'font-awesome-rails'
 
 
 gem 'omniauth-facebook'
+gem 'koala'
 
 gem 'google-analytics-rails'
 

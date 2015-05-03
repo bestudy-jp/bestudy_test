@@ -33,4 +33,19 @@ class User < ActiveRecord::Base
     user.oauth_expires_at = Time.at(auth.credentials.expires_at)
     user
   end
+
+  def profile_hash
+    graph = Koala::Facebook::API.new(oauth_token)
+    profile = graph.get_object('me')
+    JSON.generate(profile)
+  end
+
+  def update_profile
+    self.detail_hash = profile_hash
+  end
+
+  def update_profile!
+    update_profile
+    save!
+  end
 end

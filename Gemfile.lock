@@ -27,6 +27,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
+    addressable (2.3.8)
     annotate (2.6.8)
       activerecord (>= 3.2, <= 4.3)
       rake (~> 10.4)
@@ -80,6 +81,10 @@ GEM
     json (1.8.2)
     jwt (1.4.1)
     kgio (2.9.3)
+    koala (2.0.0)
+      addressable
+      faraday
+      multi_json
     less (2.6.0)
       commonjs (~> 0.2.7)
     less-rails (2.6.0)
@@ -221,6 +226,7 @@ DEPENDENCIES
   google-analytics-rails
   jbuilder (~> 2.0)
   jquery-rails
+  koala
   mysql2
   nokogiri
   omniauth-facebook

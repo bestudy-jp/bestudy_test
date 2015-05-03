@@ -4,11 +4,13 @@ class UsersController < ApplicationController
     if env['omniauth.auth'].present?
       # Facebookログイン
       @user  = User.from_omniauth(env['omniauth.auth'])
+      @user.update_profile
       result = @user.save(context: :facebook_login)
       fb       = "Facebook"
     else
       # 通常サインアップ
       @user  = User.new(strong_params)
+      @user.update_profile
       result = @user.save
       fb       = ""
     end
