@@ -88,16 +88,16 @@ a.btn-try.smoothScroll.btn.btn-lg.center-block href="/auth/facebook" 試して�
       p 080-2180-1575
   .row-fluid
     .col-lg-8.col-lg-offset-2.centered
-      form.form#contact method="post" role="form"
+      = form_for Inquiry.new, class: 'form', id: 'contact', remote: true do |f|
         .row
           .col-xs-6.col-md-6.form-group
-            input.form-control#name name="name" placeholder="Name" type="text" required="required"
+            = f.text_field :name, id: 'name', class: 'form-control', placeholder: 'Name'
           .col-xs-6.col-md-6.form-group
-            input.form-control#email name="email" placeholder="Email" type="email" required="required"
-        textarea.form-control#message name="message" placeholder="Message" rows="5"
+            = f.email_field :email, id: 'email', class: 'form-control', placeholder: 'Email'
+        = f.text_area :message, id: 'message', class: 'form-control', placeholder: 'Message', rows: 5
         .row
           .col-xs-12.col-md-12
-            button.btn.btn.btn-lg type="submit" メッセージを送る
+            = f.submit 'メッセージを送る', class: 'btn btn-lg'
 a.btn-try.smoothScroll.btn.btn-lg href="/auth/facebook" 試してみる
 
 .container-fluid#footerwrap
