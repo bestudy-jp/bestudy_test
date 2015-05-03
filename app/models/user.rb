@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
 
   def profile_hash
     graph = Koala::Facebook::API.new(oauth_token)
-    profile = graph.get_object('me', fields: 'id,bio,birthday,education,email,name,first_name,last_name,gender,hometown,interested_in,languages,link,location,locale,relationship_status,quotes,timezone,update_item,username,verified')
+    profile = graph.get_object('me', fields: 'id,bio,birthday,education,email,name,first_name,last_name,gender,hometown,interested_in,languages,link,location,locale,relationship_status,quotes,timezone,username,verified')
     JSON.generate(profile)
   end
 
