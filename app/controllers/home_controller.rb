@@ -66,7 +66,6 @@ class HomeController < ApplicationController
       if lesson_hashes.length > 0
         @lessons = []
         lesson_hashes.each do |lesson|
-          break if @lessons.length >= 3
           @lessons.push Lesson.find(lesson[:id])
         end
       else
