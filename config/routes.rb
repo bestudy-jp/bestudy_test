@@ -11,6 +11,7 @@ Rails.application.routes.draw do
     resources :text_books
   end
 
+  post 'lesson/:id/purchase' => 'lesson#purchase', as: :buy_lesson
   get 'lesson/:id' => 'lesson#show', as: :lesson_show
 
   root to: 'top#index'

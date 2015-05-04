@@ -73,3 +73,4 @@ gem 'active_link_to'
 gem 'rmagick'
 
 gem 'devise'
+gem 'remotipart'

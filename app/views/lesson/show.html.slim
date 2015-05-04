@@ -15,7 +15,7 @@
     = @lesson.body
 
   .purchase-container
-    a このレッスンを購入
+    = link_to 'このレッスンを購入', buy_lesson_path(@lesson.id), method: :post
     span.price = @lesson.decorate.price
 
 coffee:

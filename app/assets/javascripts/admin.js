@@ -18,3 +18,4 @@
 //= require talk
 //= require cocoon
 //= require admin/common
+//= require jquery.remotipart
