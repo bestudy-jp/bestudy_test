@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :inquiries, only: [:create]
+  get '/home/genre' => 'home#genre', as: :select_genre
   post '/home/judge' => 'home#judge', as: :judge
 
   namespace :admin do

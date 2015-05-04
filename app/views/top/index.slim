@@ -26,7 +26,7 @@
       i.fa.fa-dashboard.icon
       h1 あなたにとって最高の学習を人工知能が提供
       p 学ぶ意欲のある人が効率的に学べ、やる気を成果に変換するお手伝いをします。
-      = link_to '試してみる', user_omniauth_authorize_path(:facebook), class: 'smoothScroll btn btn-lg text-center'
+      = link_to '試してみる', select_genre_path, class: 'smoothScroll btn btn-lg text-center'
 
 .container-fluid
   .row.white#about name="about"
@@ -43,7 +43,7 @@
         | りワクワクする世界にしたい。」
         | という理念をもとに人々の学習を人工知能と教育工学の技術
         | で、全く新しい学習体験を提供します。
-  = link_to '試してみる', user_omniauth_authorize_path(:facebook), class: 'smoothScroll btn btn-lg center-block'
+  = link_to '試してみる', select_genre_path, class: 'smoothScroll btn btn-lg center-block'
 
 .container-fluid#services name="services"
   .row-fluid
@@ -71,7 +71,7 @@
         br
         | 最適なプランを常に提案
       p 使えば使うほどあなたの特性を理解し、常に最適なプランを提案
-= link_to '試してみる', user_omniauth_authorize_path(:facebook), class: 'smoothScroll btn btn-lg btn-try center-block'
+= link_to '試してみる', select_genre_path, class: 'smoothScroll btn btn-lg btn-try center-block'
 
 .container-fluid#contact name="contact"
   .row-fluid
@@ -98,7 +98,7 @@
         .row
           .col-xs-12.col-md-12
             = f.submit 'メッセージを送る', class: 'btn btn-lg'
-= link_to '試してみる', user_omniauth_authorize_path(:facebook), class: 'smoothScroll btn btn-lg btn-try'
+= link_to '試してみる', select_genre_path, class: 'smoothScroll btn btn-lg btn-try'
 
 .container-fluid#footerwrap
   .row-fluid
