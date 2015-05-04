@@ -62,16 +62,13 @@ class HomeController < ApplicationController
         a[:rate] <=> b[:rate]
       end
       lesson_hashes.reverse!
-      lesson_titles = []
-      lesson_hashes.each do |lesson|
-        break if lesson_titles.length >= 3
-        lesson_titles.push Lesson.find(lesson[:id]).title
-      end
 
-      if lesson_titles.length > 0
-        #@messages.push(
-        #  content: 'おすすめのレッスンは、' + lesson_titles.join(', ') + 'です！'
-        #)
+      if lesson_hashes.length > 0
+        @lessons = []
+        lesson_hashes.each do |lesson|
+          break if @lessons.length >= 3
+          @lessons.push Lesson.find(lesson[:id])
+        end
       else
         @messages.push(
           content: 'おすすめのレッスンが見つかりませんでした。ごめんね。'

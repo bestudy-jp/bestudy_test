@@ -6,25 +6,20 @@
     .serif
       | あなたにオススメの教材はこれです！
 
-  - lesson = Lesson.first
+  - lesson_ids = params[:lid].split(',').map(&:to_i)
+  - lessons = Lesson.where(id: lesson_ids).to_a
+  - lessons.sort! do |a, b|
+    - lesson_ids.index(a.id) <=> lesson_ids.index(b.id)
   ul
-    li.lesson-item
-      - if lesson.text_book && lesson.text_book.pages.count > 0
-        = image_tag lesson.text_book.pages.first.image
-      - else
-        = image_tag 'now_printing.png'
-      .detail-container
-        .title
-          = lesson.title
-        span.author おーさー
-        span.price 無料
-    li.lesson-item
-      - if lesson.text_book && lesson.text_book.pages.count > 0
-        = image_tag lesson.text_book.pages.first.image
-      - else
-        = image_tag 'now_printing.png'
-      .detail-container
-        .title
-          = lesson.title
-        span.author おーさー
-        span.price 無料
+    - lessons.each do |lesson|
+      - lesson = lesson.decorate
+      li.lesson-item
+        - if lesson.text_books.first && lesson.text_books.first.pages.count > 0
+          = image_tag lesson.text_books.first.pages.first.image.url(:thumb2x), width: 156, height: 117
+        - else
+          = image_tag 'now_printing.gif', width: 156, height: 117
+        .detail-container
+          .title
+            = lesson.title
+          span.author おーさー
+          span.price = lesson.price

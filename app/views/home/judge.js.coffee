@@ -21,6 +21,6 @@ else
 <% if @messages.count <= 0 %>
 $('body').fadeOut(1000)
 setTimeout(->
-  location.href = '/home/done'
+  location.href = '/home/done?lid=<%= @lessons.map{|v| v.id}.join(',') %>'
 , 1500)
 <% end %>
