@@ -37,20 +37,18 @@ class User < ActiveRecord::Base
   has_many :genre, through: :genre_user_relation
 
   def self.find_for_facebook_oauth(auth)
-    # emailの提供は必須とする
-    user = User.where('email = ?', auth.info.email).first
-    if user.blank?
-      user = User.new
+    user = User.where(provider: auth.provider, uid: auth.uid).first
+
+    unless user
+      user = User.create( name:     auth.extra.raw_info.name,
+                          provider: auth.provider,
+                          uid:      auth.uid,
+                          email:    auth.info.email,
+                          token:    auth.credentials.token,
+                          password: Devise.friendly_token[0,20] )
     end
-    user.uid   = auth.uid
-    user.name  = auth.info.name
-    user.email = auth.info.email
-    user.icon  = auth.info.image
-    user.provider = auth.provider
-    user.password = Devise.friendly_token[0, 20]
-    user.oauth_token      = auth.credentials.token
-    user.oauth_expires_at = Time.at(auth.credentials.expires_at)
-    user
+
+    return user
   end
 
   def profile_hash
