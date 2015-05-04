@@ -51,6 +51,21 @@ class User < ActiveRecord::Base
     return user
   end
 
+  def self.find_for_twitter_oauth(auth)
+    user = User.where(provider: auth.provider, uid: auth.uid).first
+
+    unless user
+      user = User.create( name:     auth.info.nickname,
+                          provider: auth.provider,
+                          uid:      auth.uid,
+                          email:    User.create_unique_email,
+                          token:    auth.credentials.token,
+                          password: Devise.friendly_token[0,20] )
+    end
+
+    return user
+  end
+
   def profile_hash
     graph = Koala::Facebook::API.new(oauth_token)
     profile = graph.get_object('me', fields: 'id,bio,birthday,education,email,name,first_name,last_name,gender,hometown,interested_in,languages,link,location,locale,relationship_status,quotes,timezone,verified')
@@ -64,5 +79,15 @@ class User < ActiveRecord::Base
   def update_profile!
     update_profile
     save!
+  end
+
+  private
+
+  def self.create_unique_string
+    SecureRandom.uuid
+  end
+
+  def self.create_unique_email
+    User.create_unique_string + "@example.com"
   end
 end
