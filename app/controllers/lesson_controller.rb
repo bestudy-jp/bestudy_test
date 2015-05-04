@@ -10,7 +10,7 @@ class LessonController < ApplicationController
     UserPurchase.create(
       user_id: current_user.id,
       lesson_id: @lesson.id,
-      price: @lesson.price
+      price: @lesson.price.to_i
     )
   end
 end
