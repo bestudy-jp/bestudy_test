@@ -8,8 +8,6 @@
 #  name                   :string(255)
 #  email                  :string(255)
 #  icon                   :string(255)
-#  oauth_token            :string(255)
-#  oauth_expires_at       :datetime
 #  created_at             :datetime
 #  updated_at             :datetime
 #  detail_hash            :text
@@ -25,6 +23,7 @@
 #  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string(255)
 #  locked_at              :datetime
+#  token                  :string(255)
 #
 
 class User < ActiveRecord::Base
