@@ -15,7 +15,7 @@ class LessonController < ApplicationController
         price: @lesson.price.to_i
       )
     else
-      session[:user_return_to] = lesson_show(@lesson.id)
+      session[:user_return_to] = lesson_show_path(@lesson.id)
     end
   end
 end
