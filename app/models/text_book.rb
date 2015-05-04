@@ -30,7 +30,7 @@ class TextBook < ActiveRecord::Base
           remote_image_url: img_url
         )
       end
+      return textbook
     end
-    text_book
   end
 end
