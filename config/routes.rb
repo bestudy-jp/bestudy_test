@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :inquiries, only: [:create]
   post '/home/judge' => 'home#judge', as: :judge
 

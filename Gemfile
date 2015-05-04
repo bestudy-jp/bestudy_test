@@ -70,3 +70,5 @@ gem 'draper'
 gem 'kaminari'
 gem 'active_link_to'
 gem 'rmagick'
+
+gem 'devise'

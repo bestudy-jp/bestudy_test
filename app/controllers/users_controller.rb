@@ -1,24 +1,23 @@
 class UsersController < ApplicationController
   def create
-
     if env['omniauth.auth'].present?
       # Facebookログイン
       @user  = User.from_omniauth(env['omniauth.auth'])
       @user.update_profile
       result = @user.save(context: :facebook_login)
-      fb       = "Facebook"
+      fb       = 'Facebook'
     else
       # 通常サインアップ
       @user  = User.new(strong_params)
       @user.update_profile
       result = @user.save
-      fb       = ""
+      fb       = ''
     end
     if result
       session[:user_id] = @user.id
 
       flash[:success] = "#{fb}ログインしました。"
-      redirect_to '/home/genre'
+      sign_in_and_redirect(@user, event: :authentication)
     else
       if fb.present?
         redirect_to auth_failure_path
@@ -27,5 +26,4 @@ class UsersController < ApplicationController
       end
     end
   end
-
 end
