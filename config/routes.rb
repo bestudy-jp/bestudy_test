@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     root to: 'questions#index'
     resources :questions
     resources :lessons
+    resources :text_books
   end
 
   root to: 'top#index'

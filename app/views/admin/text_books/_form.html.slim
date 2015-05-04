@@ -1,0 +1,52 @@
+- unless @text_book
+  - @text_book = TextBook.new
+  - @title = '教材の新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_text_books_path
+- else
+  - @title = '教材の編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_text_book_path
+
+= form_for( @text_book, url: form_for_path, :html => { :class => :form, :id => 'formTextBook' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          - if params[:from_slideshare]
+            .form-group
+              label SlideShareのURL
+              = text_field_tag :slideshare_url, '', :class => 'form-control'
+
+          - else
+            .form-group
+              = f.label :name, '教材名'
+              = f.text_field :name, :class => 'form-control'
+
+            h5 利用するレッスン
+
+            .form-group
+              ul.answers
+                = f.fields_for :lesson_text_books do |mrf|
+                  = render 'lesson_text_book_fields', f: mrf
+                li
+                  = link_to_add_association 'レッスンを追加', f, :lesson_text_books, class: 'btn btn-xs btn-success'
+
+            h5 資料
+
+            .form-group
+              ul.pages
+                = f.fields_for :pages do |pf|
+                  = render 'page_fields', f: pf
+                li
+                  = link_to_add_association '資料を追加', f, :pages, class: 'btn btn-xs btn-success'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formTextBook'

@@ -1,0 +1,7 @@
+li.nested-fields.match-rate
+  .form-group
+    = f.file_field :image, class: 'form-control'
+    - unless f.object.image.blank?
+      = image_tag f.object.image.url, width: 200
+
+    = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'

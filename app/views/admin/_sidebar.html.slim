@@ -9,3 +9,7 @@
       h4.list-group-item-heading レッスン
       p.list-group-item-text
         | レッスンの管理を行います。
+    = active_link_to( admin_text_books_path, class: 'list-group-item' ) do
+      h4.list-group-item-heading 教材
+      p.list-group-item-text
+        | 教材の管理を行います。

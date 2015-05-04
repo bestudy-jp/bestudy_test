@@ -13,6 +13,9 @@ class TextBook < ActiveRecord::Base
   has_many :lesson_text_books
   has_many :lessons, through: :lesson_text_books
 
+  accepts_nested_attributes_for :pages, allow_destroy: true
+  accepts_nested_attributes_for :lesson_text_books, allow_destroy: true
+
   def self.generate_from_slideshare(url)
     ActiveRecord::Base.transaction do
       doc = Nokogiri::HTML(open(url))
@@ -28,5 +31,6 @@ class TextBook < ActiveRecord::Base
         )
       end
     end
+    text_book
   end
 end

@@ -1,0 +1,41 @@
+h4 教材の管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_text_book_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+    = link_to new_admin_text_book_path(from_slideshare: true), :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;SlideShareから登録
+
+div.data-list
+  = paginate @text_books
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th 教材名
+          th ページ数
+      tbody
+        - @text_books.each do |text_book|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_text_book_path( text_book.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_text_book_path( text_book.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = text_book.id
+            td
+              = text_book.name
+            td
+              = text_book.pages.count
+              | ページ
+
+  = paginate @text_books
