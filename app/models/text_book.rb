@@ -10,6 +10,8 @@
 
 class TextBook < ActiveRecord::Base
   has_many :pages, dependent: :destroy
+  has_many :lesson_text_books
+  has_many :lessons, through: :lesson_text_books
 
   def self.generate_from_slideshare(url)
     ActiveRecord::Base.transaction do

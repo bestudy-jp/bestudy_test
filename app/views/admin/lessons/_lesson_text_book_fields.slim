@@ -1,0 +1,7 @@
+li.nested-fields
+  .form-group
+    - if f.object
+      = f.select :text_book_id, options_from_collection_for_select(TextBook.all, :id, :name, f.object.text_book_id), {}, class: 'form-control'
+    - else
+      = f.select :text_book_id, options_from_collection_for_select(TextBook.all, :id, :name), {}, class: 'form-control'
+    = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'

@@ -38,7 +38,11 @@ div.data-list
               = lesson.price
             td
               = lesson.body
-            td.center
+            td
+              - lesson.text_books.each do |tb|
+                = tb.name
+                br
+            td
               - lesson.match_rates.includes(:answer).each do |mr|
                 = "#{ mr.answer.body } (#{ mr.rate }%)"
                 br

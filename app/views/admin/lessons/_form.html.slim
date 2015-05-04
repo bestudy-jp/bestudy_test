@@ -29,6 +29,15 @@
             = f.label :price, 'レッスン価格'
             = f.text_field :price, :class => 'form-control'
 
+          h5 教材
+
+          .form-group
+            ul.answers
+              = f.fields_for :lesson_text_books do |tbf|
+                = render 'lesson_text_book_fields', f: tbf
+              li
+                = link_to_add_association '教材を追加', f, :lesson_text_books, class: 'btn btn-xs btn-success'
+
           h5 関連性のある回答
 
           .form-group
