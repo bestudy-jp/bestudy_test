@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :inquiries, only: [:create]
   post '/home/judge' => 'home#judge', as: :judge
 
@@ -13,9 +13,7 @@ Rails.application.routes.draw do
   get 'lesson/:id' => 'lesson#show', as: :lesson_show
 
   root to: 'top#index'
+  get "home", to: "home#index", as: "user_root"
   get ':controller(/:action(/:id(.:format)))'
   post ':controller(/:action(/:id(.:format)))'
-
-  get '/auth/:provider/callback', to: 'users#create',       as: :auth_callback
-  get '/auth/failure', to: 'users#auth_failure', as: :auth_failure
 end
