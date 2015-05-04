@@ -7,9 +7,6 @@ class HomeController < ApplicationController
 
   def done
     @user = current_user
-    params[:genre].each{|k,v|
-      GenreUserRelation.create(genre_id: k.to_i, user_id: @user.id)
-    }
   end
 
   def question
@@ -72,9 +69,9 @@ class HomeController < ApplicationController
       end
 
       if lesson_titles.length > 0
-        @messages.push(
-          content: 'おすすめのレッスンは、' + lesson_titles.join(', ') + 'です！'
-        )
+        #@messages.push(
+        #  content: 'おすすめのレッスンは、' + lesson_titles.join(', ') + 'です！'
+        #)
       else
         @messages.push(
           content: 'おすすめのレッスンが見つかりませんでした。ごめんね。'

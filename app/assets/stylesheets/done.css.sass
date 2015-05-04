@@ -1,0 +1,65 @@
+@import 'compass'
+
+.result-container
+  text-align: center
+  position: relative
+  h2
+    margin: 0
+    padding: 4px 10px
+    text-align: center
+    color: white
+    font-size: 20px
+    border-bottom: 1px solid rgb(0, 255, 3)
+  .recommend-container
+    > img
+      width: 240px
+      margin-bottom: 8px
+    .serif
+      font-size: 14px
+      color: white
+      @include text-shadow(1px 1px rgb(166, 67, 67))
+  ul
+    list-style: none
+    padding-left: 0
+    width: 100%
+    margin-top: 10px
+    li.lesson-item
+      display: inline-block
+      width: 49%
+      width: calc(50% - 2px)
+      position: relative
+      padding-bottom: 20px
+      border: 1px solid #00ff03
+      height: 174px
+      overflow: hidden
+      > img
+        width: 100%
+
+      .detail-container
+        padding: 2px
+        .title
+          font-size: 13px
+          font-weight: bold
+          color: white
+          width: 100%
+          line-height: 13px
+          text-align: left
+          height: 39px
+          overflow: hidden
+        .author
+          color: rgb(187, 187, 187)
+          font-size: 11px
+          line-height: 11px
+          position: absolute
+          bottom: 1px
+          left: 1px
+        .price
+          display: inline-block
+          position: absolute
+          bottom: 1px
+          right: 1px
+          font-size: 12px
+          line-height: 12px
+          font-weight: bold
+          color: rgb(239, 255, 0)
+

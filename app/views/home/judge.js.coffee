@@ -17,3 +17,10 @@ if $('.talk-container').height() <= $(window).height() - $('.select-container').
   $('.talk-container').css('padding-bottom', $(window).height() - $('.talk-container').height() - $('.select-container').height() - 20)
 else
   $('.talk-container').css('padding-bottom', 'inherit')
+
+<% if @messages.count <= 0 %>
+$('body').fadeOut(1000)
+setTimeout(->
+  location.href = '/home/done'
+, 1500)
+<% end %>

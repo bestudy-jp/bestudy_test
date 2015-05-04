@@ -1,3 +1,30 @@
-| 登録ありがとうございました。
-br
-| 今後の開発のための情報に使わせて頂きます。
+.result-container
+  h2 ベスタくん
+
+  .recommend-container
+    = image_tag 'robot.png'
+    .serif
+      | あなたにオススメの教材はこれです！
+
+  - lesson = Lesson.first
+  ul
+    li.lesson-item
+      - if lesson.text_book && lesson.text_book.pages.count > 0
+        = image_tag lesson.text_book.pages.first.image
+      - else
+        = image_tag 'now_printing.png'
+      .detail-container
+        .title
+          = lesson.title
+        span.author おーさー
+        span.price 無料
+    li.lesson-item
+      - if lesson.text_book && lesson.text_book.pages.count > 0
+        = image_tag lesson.text_book.pages.first.image
+      - else
+        = image_tag 'now_printing.png'
+      .detail-container
+        .title
+          = lesson.title
+        span.author おーさー
+        span.price 無料

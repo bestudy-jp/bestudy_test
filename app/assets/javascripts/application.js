@@ -16,3 +16,5 @@
 //= require slate
 //= require boombox
 //= require talk
+//= require excanvas
+//= require radar
