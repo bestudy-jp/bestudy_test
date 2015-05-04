@@ -236,9 +236,9 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   if Rails.env.production?
-    config.omniauth(:facebook, '820404027996736', '4d8d760f4c3ea0313afefe38794a25ec', { scope: 'id,bio,birthday,education,email,name,first_name,last_name,gender,hometown,interested_in,languages,link,location,locale,relationship_status,quotes,timezone,verified' })
+    config.omniauth(:facebook, '820404027996736', '4d8d760f4c3ea0313afefe38794a25ec', { scope: 'email' })
   else
-    config.omniauth(:facebook, '835790176458121', 'cc6ddf8b380f611d16155fab0a5f190e', { scope: 'id,bio,birthday,education,email,name,first_name,last_name,gender,hometown,interested_in,languages,link,location,locale,relationship_status,quotes,timezone,verified' })
+    config.omniauth(:facebook, '835790176458121', 'cc6ddf8b380f611d16155fab0a5f190e', { scope: 'email' })
   end
 
   # ==> Warden configuration

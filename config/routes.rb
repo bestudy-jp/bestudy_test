@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'lesson/:id' => 'lesson#show', as: :lesson_show
 
   root to: 'top#index'
-  get "home", to: "home#index", as: "user_root"
+  get "home", to: "home#genre", as: "user_root"
   get ':controller(/:action(/:id(.:format)))'
   post ':controller(/:action(/:id(.:format)))'
 end
