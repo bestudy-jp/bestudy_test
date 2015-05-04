@@ -14,12 +14,13 @@
     - lessons.each do |lesson|
       - lesson = lesson.decorate
       li.lesson-item
-        - if lesson.text_books.first && lesson.text_books.first.pages.count > 0
-          = image_tag lesson.text_books.first.pages.first.image.url(:thumb2x), width: 156, height: 117
-        - else
-          = image_tag 'now_printing.gif', width: 156, height: 117
-        .detail-container
-          .title
-            = lesson.title
-          span.author おーさー
-          span.price = lesson.price
+        = link_to lesson_show_path(lesson.id) do
+          - if lesson.text_books.first && lesson.text_books.first.pages.count > 0
+            = image_tag lesson.text_books.first.pages.first.image.url(:thumb2x), width: 156, height: 117
+          - else
+            = image_tag 'now_printing.gif', width: 156, height: 117
+          .detail-container
+            .title
+              = lesson.title
+            span.author おーさー
+            span.price = lesson.price

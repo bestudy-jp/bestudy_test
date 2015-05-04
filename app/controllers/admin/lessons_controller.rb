@@ -39,6 +39,9 @@ class Admin::LessonsController < ApplicationController
       :title, :body, :price, :text_book_id,
       match_rates_attributes: [
         :id, :answer_id, :rate, :_destroy
+      ],
+      lesson_text_books_attributes: [
+        :id, :text_book_id, :_destroy
       ]
     )
   end

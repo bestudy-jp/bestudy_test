@@ -24,6 +24,8 @@
     width: 100%
     margin-top: 10px
     li.lesson-item
+      > a
+        display: inline-block
       display: inline-block
       width: 49%
       width: calc(50% - 2px)
@@ -63,3 +65,66 @@
           font-weight: bold
           color: rgb(239, 255, 0)
 
+.detail-lesson-container
+  > img
+    width: 100%
+  .header
+    position: fixed
+    top: 0
+    width: 100%
+    height: 34px
+    background-color: rgba(0, 0, 0, 0.08)
+    line-height: 34px
+    color: white
+    font-weight: bold
+    padding: 0 10px
+    > a, > a:hover, > a:active, > a:visited
+      color: white
+      text-decoration: none
+  .lesson-info-container
+    line-height: 30px
+    background-color: white
+    font-size: 13px
+    height: 30px
+    span.student
+      position: absolute
+      right: 10px
+      color: gray
+  h2
+    font-size: 20px
+    padding: 4px
+    margin: 1px 0
+    color: rgb(100, 100, 100)
+    background-color: white
+    font-weight: normal
+    @include text-shadow(none)
+  .content-container
+    white-space: pre-line
+    padding: 4px
+    padding-bottom: 30px
+    font-size: 14px
+    color: rgb(100, 100, 100)
+    background-color: white
+  .purchase-container
+    position: fixed
+    bottom: 0
+    width: 100%
+    height: 50px
+    background-color: rgb(22, 34, 25)
+    border-top: 1px solid rgb(100, 255, 120)
+    > a
+      display: inline-block
+      background-color: #3A6EDF
+      color: rgb(255, 255, 249)
+      margin: 4px
+      height: 40px
+      font-size: 18px
+      font-weight: bold
+      padding: 0 10px
+      line-height: 40px
+      @include border-radius(4px)
+    > span.price
+      float: right
+      line-height: 40px
+      margin: 4px 8px 4px 4px
+      color: white

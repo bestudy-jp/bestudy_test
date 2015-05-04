@@ -1,0 +1,24 @@
+.detail-lesson-container
+  .header
+    a.btn-back
+      | ←
+  - if @lesson.text_books.count > 0
+    - if @lesson.text_books.first.pages.count > 0
+      = image_tag @lesson.text_books.first.pages.first.image.url
+
+  .lesson-info-container
+    span.student 10人の受講生
+
+  h2 = @lesson.title
+
+  .content-container
+    = @lesson.body
+
+  .purchase-container
+    a このレッスンを購入
+    span.price = @lesson.decorate.price
+
+coffee:
+  $('.btn-back').on('click', ->
+    history.back()
+  )
