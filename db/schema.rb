@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504073626) do
+ActiveRecord::Schema.define(version: 20150504171543) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150504073626) do
     t.integer  "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "author"
   end
 
   create_table "match_rates", force: true do |t|

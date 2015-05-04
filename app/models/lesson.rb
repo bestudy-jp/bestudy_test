@@ -8,6 +8,7 @@
 #  price      :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  author     :string(255)
 #
 
 class Lesson < ActiveRecord::Base

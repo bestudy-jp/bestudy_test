@@ -36,7 +36,7 @@ class Admin::LessonsController < ApplicationController
 
   def lesson_params
     params.require(:lesson).permit(
-      :title, :body, :price, :text_book_id,
+      :title, :author, :body, :price, :text_book_id,
       match_rates_attributes: [
         :id, :answer_id, :rate, :_destroy
       ],
