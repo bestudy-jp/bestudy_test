@@ -1,0 +1,43 @@
+- unless @lesson
+  - @lesson = Lesson.new
+  - @title = 'レッスンの新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_lessons_path
+- else
+  - @title = 'レッスンの編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_lesson_path
+
+= form_for( @lesson, url: form_for_path, :html => { :class => :form, :id => 'formLesson' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          .form-group
+            = f.label :title, 'レッスン名'
+            = f.text_field :title, :class => 'form-control'
+          .form-group
+            = f.label :body, 'レッスン内容'
+            = f.text_area :body, :class => 'form-control'
+          .form-group
+            = f.label :price, 'レッスン価格'
+            = f.text_field :price, :class => 'form-control'
+
+          h5 関連性のある回答
+
+          .form-group
+            ul.answers
+              = f.fields_for :match_rates do |mrf|
+                = render 'match_rate_fields', f: mrf
+              li
+                = link_to_add_association '関連性を追加', f, :match_rates, class: 'btn btn-xs btn-success'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formLesson'

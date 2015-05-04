@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: 'questions#index'
     resources :questions
+    resources :lessons
   end
 
   root to: 'top#index'

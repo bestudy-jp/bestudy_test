@@ -1,0 +1,46 @@
+h4 レッスンの管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_lesson_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+
+div.data-list
+  = paginate @lessons
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th レッスン名
+          th 価格
+          th レッスン内容
+          th 教材
+          th 関連回答
+      tbody
+        - @lessons.each do |lesson|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_lesson_path( lesson.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_lesson_path( lesson.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = lesson.id
+            td
+              = lesson.title
+            td
+              = lesson.price
+            td
+              = lesson.body
+            td.center
+              - lesson.match_rates.includes(:answer).each do |mr|
+                = "#{ mr.answer.body } (#{ mr.rate }%)"
+                br
+
+  = paginate @lessons
