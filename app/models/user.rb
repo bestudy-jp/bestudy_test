@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   has_many :genre_user_relation
   has_many :genre, through: :genre_user_relation
 
-  def self.from_omniauth(auth)
+  def self.find_for_facebook_oauth(auth)
     # emailの提供は必須とする
     user = User.where('email = ?', auth.info.email).first
     if user.blank?

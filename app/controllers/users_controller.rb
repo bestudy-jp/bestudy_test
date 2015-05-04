@@ -1,29 +1,13 @@
-class UsersController < ApplicationController
-  def create
-    if env['omniauth.auth'].present?
-      # Facebookログイン
-      @user  = User.from_omniauth(env['omniauth.auth'])
-      @user.update_profile
-      result = @user.save(context: :facebook_login)
-      fb       = 'Facebook'
-    else
-      # 通常サインアップ
-      @user  = User.new(strong_params)
-      @user.update_profile
-      result = @user.save
-      fb       = ''
-    end
-    if result
-      session[:user_id] = @user.id
+class UsersController < Devise::OmniauthCallbacksController
+  def facebook
+    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"])
 
-      flash[:success] = "#{fb}ログインしました。"
-      sign_in_and_redirect(@user, event: :authentication)
+    if @user.persisted?
+      sign_in_and_redirect @user, :event => :authentication #this will throw if @user is not activated
+      set_flash_message(:notice, :success, :kind => "Facebook") if is_navigational_format?
     else
-      if fb.present?
-        redirect_to auth_failure_path
-      else
-        render 'new'
-      end
+      session["devise.facebook_data"] = request.env["omniauth.auth"]
+      redirect_to new_user_registration_url
     end
   end
 end
