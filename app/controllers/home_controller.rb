@@ -63,16 +63,19 @@ class HomeController < ApplicationController
       end
       lesson_hashes.reverse!
 
+      session[:recommended_lesson_ids] = []
       if lesson_hashes.length > 0
         @lessons = []
         lesson_hashes.each do |lesson|
           @lessons.push Lesson.find(lesson[:id])
+          session[:recommended_lesson_ids].push(lesson[:id])
         end
       else
         @messages.push(
           content: 'おすすめのレッスンが見つかりませんでした。ごめんね。'
         )
       end
+      session[:recommended_lesson_ids] = JSON.generate(session[:recommended_lesson_ids])
     end
     render layout: false
   end

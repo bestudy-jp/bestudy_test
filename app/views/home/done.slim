@@ -6,7 +6,7 @@
     .serif
       | あなたにオススメの教材はこれです！
 
-  - lesson_ids = params[:lid].split(',').map(&:to_i)
+  - lesson_ids = JSON.parse(session[:recommended_lesson_ids])
   - lessons = Lesson.where(id: lesson_ids).to_a
   - lessons.sort! do |a, b|
     - lesson_ids.index(a.id) <=> lesson_ids.index(b.id)

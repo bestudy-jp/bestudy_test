@@ -1,9 +1,10 @@
 .purchase-container
   - if user_signed_in?
     p ご購入ありがとうございます。現在はテスト中のため、無料でお試し頂けます。
-    a href="#" 学習を始める
-    br
-    a href="#" 他のオススメレッスンを確認する
+    .btn-container
+      a href="#" 学習を始める
+      br
+      = link_to '他のオススメレッスンを確認する', '/home/done'
 
   - else
     p ありがとうございます。ご購入いただくには、ユーザ登録が必要です。Facebookにてログインしてご利用ください。
