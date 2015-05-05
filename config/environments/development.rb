@@ -42,6 +42,6 @@ Rails.application.configure do
     user_name: 'bestudy.jp',
     password: 'Bestudy_jp&G',
     authentication: 'plain',
-    enablestarttls_auto: true
+    enable_starttls_auto: true
   }
 end
