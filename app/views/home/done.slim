@@ -31,13 +31,19 @@
             span.author = lesson.author
             span.price = lesson.price
 
+- answer_ids = JSON.parse(session[:answer_ids])
+- radar_points = Answer.radar_points_from_answer_ids(answer_ids)
+javascript:
+  var fields = JSON.parse('#{ raw JSON.generate(radar_points.keys) }');
+  var points = ['Dummy'].concat(JSON.parse('#{ raw JSON.generate(radar_points.values) }'));
+
 coffee:
   rc = new html5jp.graph.radar('radar')
   items = [
-    ['ほげ太郎さん', 5, 2, 3, 2, 2, 4]
+    points
   ]
   params = {
-    aCap: ['スクリプト言語', 'サーバ', 'マークアップ', 'セキュリティ', 'ユーザビリティ', 'テスト'],
+    aCap: fields,
     chartShape: 'circle',
     sLabel: false,
     legend: false

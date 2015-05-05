@@ -16,4 +16,16 @@ class Answer < ActiveRecord::Base
   belongs_to :question
 
   accepts_nested_attributes_for :radar_points, allow_destroy: true
+
+  def self.radar_points_from_answer_ids(answer_ids)
+    ret = {}
+    Answer.where(id: answer_ids).includes(:radar_points).each do |answer|
+      next if answer.radar_points.count <= 0
+      answer.radar_points.each do |rp|
+        ret[rp.name] ||= 0
+        ret[rp.name] += rp.point
+      end
+    end
+    ret
+  end
 end

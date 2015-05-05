@@ -76,6 +76,7 @@ class HomeController < ApplicationController
         )
       end
       session[:recommended_lesson_ids] = JSON.generate(session[:recommended_lesson_ids])
+      session[:answer_ids] = JSON.generate(choices)
     end
     render layout: false
   end
