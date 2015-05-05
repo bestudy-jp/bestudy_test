@@ -1,0 +1,39 @@
+h4 目標の管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_target_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+
+div.data-list
+  = paginate @targets
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th 目標名
+          th 必要スキル
+      tbody
+        - @targets.each do |target|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_target_path( target.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_target_path( target.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = target.id
+            td
+              = target.name
+            td
+              - target.target_skills.each do |ts|
+                = "#{ ts.genre.name } (#{ ts.point })"
+                br
+
+  = paginate @targets

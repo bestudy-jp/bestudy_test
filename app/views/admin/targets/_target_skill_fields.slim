@@ -1,0 +1,13 @@
+li.nested-fields
+  .row
+    .col-xs-8
+      .form-group
+        - if f.object
+          = f.select :genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent, f.object.genre_id), {}, class: 'form-control'
+        - else
+          = f.select :genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent), {}, class: 'form-control'
+    .col-xs-2.test-input
+      .form-group
+        = f.text_field :point, class: 'form-control'
+    .col-xs-2
+      = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'

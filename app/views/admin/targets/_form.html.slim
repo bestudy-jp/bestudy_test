@@ -1,0 +1,35 @@
+- unless @target
+  - @target = Target.new
+  - @title = '目標の新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_targets_path
+- else
+  - @title = '目標の編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_target_path
+
+= form_for( @target, url: form_for_path, :html => { :class => :form, :id => 'formTarget' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          .form-group
+            = f.label :name, '目標名'
+            = f.text_field :name, :class => 'form-control'
+          .form-group
+            = f.label :target_skill, '目標到達とみなすスキル'
+            ul
+              = f.fields_for :target_skills do |tsf|
+                = render 'target_skill_fields', f: tsf
+              li
+                = link_to_add_association '必要スキルを追加', f, :target_skills, class: 'btn btn-xs btn-success'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formTarget'

@@ -1,6 +1,10 @@
 .side-bar.menu class=( Rails.env.production? ? 'production' : '' )
   h4 管理メニュー
   .list-group
+    = active_link_to( admin_targets_path, class: 'list-group-item' ) do
+      h4.list-group-item-heading 目標
+      p.list-group-item-text
+        | 目標の管理を行います。
     = active_link_to( admin_genres_path, class: 'list-group-item' ) do
       h4.list-group-item-heading スキル
       p.list-group-item-text
