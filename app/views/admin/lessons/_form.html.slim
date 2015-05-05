@@ -50,6 +50,17 @@
               li
                 = link_to_add_association '関連性を追加', f, :match_rates, class: 'btn btn-xs btn-success'
 
+          h5 スキル情報
+
+          .form-group
+            .info
+              | NP: 必要スキルポイント / RP: 完了後の到達ポイント(0指定でポイント変動なし)
+            ul
+              = f.fields_for :lesson_skills do |lsf|
+                = render 'lesson_skill_fields', f: lsf
+              li
+                = link_to_add_association 'スキル情報を追加', f, :lesson_skills, class: 'btn btn-xs btn-success'
+
         .modal-footer
           button.btn.btn-default type="button" data-dismiss="modal" 閉じる
           = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formLesson'

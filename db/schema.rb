@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505070008) do
+ActiveRecord::Schema.define(version: 20150505071628) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -39,6 +39,15 @@ ActiveRecord::Schema.define(version: 20150505070008) do
     t.string   "name"
     t.string   "email"
     t.text     "message"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lesson_skills", force: true do |t|
+    t.integer  "lesson_id",               null: false
+    t.integer  "genre_id",                null: false
+    t.integer  "need_point",  default: 0, null: false
+    t.integer  "reach_point"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

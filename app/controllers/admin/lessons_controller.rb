@@ -42,6 +42,9 @@ class Admin::LessonsController < ApplicationController
       ],
       lesson_text_books_attributes: [
         :id, :text_book_id, :_destroy
+      ],
+      lesson_skills_attributes: [
+        :id, :genre_id, :need_point, :reach_point, :_destroy
       ]
     )
   end

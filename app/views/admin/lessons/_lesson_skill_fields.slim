@@ -1,0 +1,19 @@
+li.nested-fields
+  .row
+    .col-xs-6
+      .form-group
+        = f.label :genre_id, 'スキル'
+        - if f.object
+          = f.select :genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent, f.object.genre_id), {}, class: 'form-control'
+        - else
+          = f.select :genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent), {}, class: 'form-control'
+    .col-xs-2
+      .form-group
+        = f.label :need_point, 'NP'
+        = f.text_field :need_point, class: 'form-control'
+    .col-xs-2
+      .form-group
+        = f.label :reach_point, 'RP'
+        = f.text_field :reach_point, class: 'form-control'
+    .col-xs-2.del-padding
+      = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'
