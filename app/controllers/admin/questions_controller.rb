@@ -41,7 +41,7 @@ class Admin::QuestionsController < ApplicationController
         :id, :answer_id, :_destroy
       ],
       answers_attributes: [
-        :id, :body, :level, :_destroy
+        :id, :body, :level, :target_id, :_destroy
       ]
     )
   end

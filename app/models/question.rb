@@ -25,7 +25,7 @@ class Question < ActiveRecord::Base
     TEST = 'test'
 
     SELECT = {
-      '選択式' => SELECTION,
+      '目標設定' => SELECTION,
       '能力判定' => TEST
     }
   end

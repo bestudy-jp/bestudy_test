@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505071628) do
+ActiveRecord::Schema.define(version: 20150505074220) do
 
   create_table "answers", force: true do |t|
     t.integer  "question_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150505071628) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "level",       default: 0, null: false
+    t.integer  "target_id"
   end
 
   create_table "genre_user_relations", force: true do |t|

@@ -1,10 +1,20 @@
 li.nested-fields
   .row
-    .col-xs-8
+    .col-xs-10
       .form-group
+        = f.label :body, '内容'
         = f.text_field :body, class: 'form-control'
     .col-xs-2.test-input
       .form-group
+        = f.label :level, 'レベル'
         = f.text_field :level, class: 'form-control'
+  .row
+    .col-xs-10.selection-input
+      .form-group
+        = f.label :target_id, '設定目標'
+        - if f.object
+          = f.select :target_id, options_from_collection_for_select(Target.all, :id, :name, f.object.target_id), {}, class: 'form-control'
+        - else
+          = f.select :target_id, options_from_collection_for_select(Target.all, :id, :name), {}, class: 'form-control'
     .col-xs-2
       = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'

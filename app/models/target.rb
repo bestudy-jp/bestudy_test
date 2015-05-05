@@ -10,6 +10,7 @@
 
 class Target < ActiveRecord::Base
   has_many :target_skills
+  has_many :answers
 
   accepts_nested_attributes_for :target_skills, allow_destroy: true
 end

@@ -39,7 +39,7 @@
           h5 質問の選択肢
 
           .form-group
-            ul
+            ul.question-answers
               = f.fields_for :answers do |af|
                 = render 'answer_fields', f: af
               li

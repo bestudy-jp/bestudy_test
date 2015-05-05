@@ -8,6 +8,7 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 #  level       :integer          default(0), not null
+#  target_id   :integer
 #
 
 class Answer < ActiveRecord::Base
@@ -15,6 +16,7 @@ class Answer < ActiveRecord::Base
   has_many :lesson ,  through: :match_rate
   has_many :radar_points
   belongs_to :question
+  belongs_to :target
 
   accepts_nested_attributes_for :radar_points, allow_destroy: true
 
