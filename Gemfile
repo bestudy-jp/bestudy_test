@@ -58,7 +58,6 @@ gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'koala'
 
-gem 'google-analytics-rails'
 
 gem 'dotenv'
 gem 'dotenv-rails'

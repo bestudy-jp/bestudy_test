@@ -27,6 +27,7 @@ class HomeController < ApplicationController
 
   def judge
     choices = params[:choices].split(',')
+    @choice = choices.last
     @messages = []
 
     answer = Answer.where(id: choices.last.to_i).first

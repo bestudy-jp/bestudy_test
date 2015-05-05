@@ -24,3 +24,6 @@ setTimeout(->
   location.href = '/home/done'
 , 1500)
 <% end %>
+
+if ga?
+  ga('send', { 'hitType': 'event', 'eventCategory': 'answer<%= @choice %>', eventAction: 'click', 'eventLabel': '<%= params[:choices] %>' })
