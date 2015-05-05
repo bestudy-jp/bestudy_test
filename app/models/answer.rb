@@ -7,6 +7,7 @@
 #  body        :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  level       :integer          default(0), not null
 #
 
 class Answer < ActiveRecord::Base

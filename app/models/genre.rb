@@ -11,6 +11,7 @@
 
 class Genre < ActiveRecord::Base
   has_many :genre_user_relation
+  belongs_to :parent_genre, foreign_key: :parent_genre_id, class_name: 'Genre'
 
   def self.parents_scheme
     ret = []

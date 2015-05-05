@@ -36,12 +36,12 @@ class Admin::QuestionsController < ApplicationController
 
   def question_params
     params.require(:question).permit(
-      :body,
+      :body, :genre_id,
       question_pre_answers_attributes: [
         :id, :answer_id, :_destroy
       ],
       answers_attributes: [
-        :id, :body, :_destroy
+        :id, :body, :level, :_destroy
       ]
     )
   end

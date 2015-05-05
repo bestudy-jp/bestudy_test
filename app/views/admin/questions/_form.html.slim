@@ -20,6 +20,12 @@
 
         .modal-body
           .form-group
+            = f.label :question_type, '質問種別'
+            = f.select :question_type, options_for_select(Question::QuestionType::SELECT, @question.question_type), {}, class: 'form-control'
+          .form-group.test-input
+            = f.label :genre_id, '能力判定の対象スキル'
+            = f.select :genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent, @question.genre_id), {}, class: 'form-control'
+          .form-group
             = f.label :body, '質問内容'
             = f.text_area :body, :class => 'form-control'
           .form-group
@@ -33,7 +39,7 @@
           h5 質問の選択肢
 
           .form-group
-            ul.answers
+            ul
               = f.fields_for :answers do |af|
                 = render 'answer_fields', f: af
               li
@@ -42,3 +48,14 @@
         .modal-footer
           button.btn.btn-default type="button" data-dismiss="modal" 閉じる
           = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formQuestion'
+
+coffee:
+  $('#question_question_type').on('change', ->
+    if $(this).val() == 'selection'
+      $('.selection-input').show()
+      $('.test-input').hide()
+    else
+      $('.selection-input').hide()
+      $('.test-input').show()
+  )
+  $('#question_question_type').change()

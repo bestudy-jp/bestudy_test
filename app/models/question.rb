@@ -2,10 +2,12 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
-#  body       :text
-#  created_at :datetime
-#  updated_at :datetime
+#  id            :integer          not null, primary key
+#  body          :text
+#  created_at    :datetime
+#  updated_at    :datetime
+#  question_type :string(255)      not null
+#  genre_id      :integer
 #
 
 class Question < ActiveRecord::Base
@@ -17,6 +19,16 @@ class Question < ActiveRecord::Base
 
   accepts_nested_attributes_for :answers, allow_destroy: true
   accepts_nested_attributes_for :question_pre_answers, allow_destroy: true
+
+  module QuestionType
+    SELECTION = 'selection'
+    TEST = 'test'
+
+    SELECT = {
+      '選択式' => SELECTION,
+      '能力判定' => TEST
+    }
+  end
 
   def answers_scheme
     ret = []

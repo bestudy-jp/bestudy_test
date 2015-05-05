@@ -1,5 +1,10 @@
 li.nested-fields
-  .form-group
-    = f.text_field :body, class: 'form-control'
-
-    = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'
+  .row
+    .col-xs-8
+      .form-group
+        = f.text_field :body, class: 'form-control'
+    .col-xs-2.test-input
+      .form-group
+        = f.text_field :level, class: 'form-control'
+    .col-xs-2
+      = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'
