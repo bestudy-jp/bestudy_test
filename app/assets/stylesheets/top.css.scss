@@ -241,11 +241,16 @@ a:before, a:after {
 #headerwrap .btn {
 	font-weight: 500;
 	font-size: 20px;
-	margin: 50px 0;
+	margin-top: 40px;
 	color: #fff;
     background-color: #CA8669;
     border: 1px solid;
 	border: 0;
+}
+#headerwrap .info a {
+  color: rgb(58, 45, 15);
+  text-decoration: underline;
+  font-size: 13px;
 }
 #headerwrap .btn:hover, #headerwrap .btn:focus {
 	background-color: #E2A470;

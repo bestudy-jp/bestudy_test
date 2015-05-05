@@ -3,6 +3,27 @@
 $message-background-color: #2B4133
 $message-self-background-color: rgb(87, 67, 22)
 
+.progress-container
+  text-align: center
+  border-bottom: 1px solid rgb(124, 124, 124)
+  padding: 10px 0
+  span
+    padding: 4px 8px
+    background-color: white
+    color: black
+    margin: 0 10px
+    font-size: 14px
+    line-height: 14px
+    @include border-radius(4px)
+    &.active
+      background-color: #67936A
+      color: white
+      font-weight: bold
+      border: 1px solid white
+    &.done
+      color: rgb(216, 216, 216)
+      background-color: gray
+
 .talk-container
   position: relative
   h2

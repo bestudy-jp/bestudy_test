@@ -1,5 +1,10 @@
 .talk-container
-  h2 ベスタくん
+  .progress-container
+    span.active 診断
+    | →
+    span 教材選び
+    | →
+    span 学習開始
   ul
 
   = form_tag(judge_path, id: 'form-judge', remote: true) do

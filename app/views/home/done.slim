@@ -1,16 +1,18 @@
 .result-container
-  h2 ベスタくん
+  .progress-container
+    span.done 診断
+    | →
+    span.active 教材選び
+    | →
+    span 学習開始
 
   .recommend-container
-    = image_tag 'robot.png'
     .serif
-      | あなたはWebエンジニアタイプ
-
-  .radar
-    canvas#radar width="300" height="300"
+      | あなたはズバリ
+      span.strong Webエンジニアタイプ
 
   .serif
-    | あなたにオススメの教材はこれです！
+    | あなたにオススメの教材は・・・
 
   - lesson_ids = JSON.parse(session[:recommended_lesson_ids])
   - lessons = Lesson.where(id: lesson_ids).to_a
@@ -28,8 +30,16 @@
           .detail-container
             .title
               = lesson.title
+            .description
+              = lesson.body
             span.author = lesson.author
             span.price = lesson.price
+
+  .serif
+    | あなたの能力は・・・
+
+  .radar
+    canvas#radar width="240" height="240"
 
 - answer_ids = JSON.parse(session[:answer_ids])
 - radar_points = Answer.radar_points_from_answer_ids(answer_ids)
