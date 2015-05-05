@@ -3,6 +3,6 @@ class Notification < ActionMailer::Base
 
   def purchase(lesson)
     @lesson = lesson
-    mail to: "kenji.t.dream@gmail.com"
+    mail to: "kenji.t.dream@gmail.com", cc: [ 'dolphin.orca@gmail.com', 'cpu.cpu.cpu9@gmail.com' ]
   end
 end
