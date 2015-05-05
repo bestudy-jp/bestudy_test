@@ -5,6 +5,10 @@
       h4.list-group-item-heading 質問
       p.list-group-item-text
         | 質問の管理を行います。
+    = active_link_to( admin_answers_path, class: 'list-group-item' ) do
+      h4.list-group-item-heading 質問の回答
+      p.list-group-item-text
+        | 質問の回答の管理を行います。
     = active_link_to( admin_lessons_path, class: 'list-group-item' ) do
       h4.list-group-item-heading レッスン
       p.list-group-item-text

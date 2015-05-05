@@ -1,0 +1,42 @@
+h4 回答の管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_answer_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+
+div.data-list
+  = paginate @answers
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th 回答内容
+          th 親質問
+          th レーダーチャート要素
+      tbody
+        - @answers.each do |answer|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_answer_path( answer.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_answer_path( answer.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = answer.id
+            td
+              = answer.body
+            td
+              = answer.question.body
+            td.center
+              - answer.radar_points.each do |radar|
+                = "#{ radar.name } (#{ radar.point })"
+                br
+
+  = paginate @answers

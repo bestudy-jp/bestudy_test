@@ -1,0 +1,38 @@
+- unless @answer
+  - @answer = Answer.new
+  - @title = '回答の新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_answers_path
+- else
+  - @title = '回答の編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_answer_path
+
+= form_for( @answer, url: form_for_path, :html => { :class => :form, :id => 'formAnswer' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          .form-group
+            = f.label :body, '回答内容'
+            = f.text_area :body, :class => 'form-control'
+          .form-group
+            = f.label :question_id, '親質問'
+            = f.select :question_id, options_from_collection_for_select(Question.all, :id, :body, @answer.question_id), {}, class: 'form-control'
+          .form-group
+            = f.label :radar_points, 'レーダーチャートのポイント'
+            ul
+              = f.fields_for :radar_points do |qpaf|
+                = render 'radar_point_fields', f: qpaf
+              li
+                = link_to_add_association 'レーダーチャートの要素を追加', f, :radar_points, class: 'btn btn-xs btn-success'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formAnswer'
