@@ -1,0 +1,28 @@
+- unless @chat
+  - @chat = Chat.new
+  - @title = 'チャットの新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_chats_path
+- else
+  - @title = 'チャットの編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_chat_path
+
+= form_for( @chat, url: form_for_path, :html => { :class => :form, :id => 'formChat' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          .form-group
+            = f.label :message, 'メッセージ'
+            = f.text_field :message, :class => 'form-control'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formChat'

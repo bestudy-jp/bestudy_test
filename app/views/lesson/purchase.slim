@@ -1,18 +1,98 @@
-.purchase-container
-  - if user_signed_in?
-    p ご購入ありがとうございます。現在はテスト中のため、無料でお試し頂けます。
-    p もしよろしければ、ご連絡下さい。
-    /.btn-container
-      a href="#" 学習を始める
-      br
-      = link_to '他のオススメレッスンを確認する', '/home/done'
 
-  - else
-    p ご購入ありがとうございます。現在はテスト中のため、無料でお試し頂けます。
-    p もしよろしければ、ご連絡下さい。
-    /.btn-container
-      = link_to 'Facebookでログイン', user_omniauth_authorize_path(:facebook), class: 'btn-facebook'
+.talk-container
+  ul
+    li.chat
+      = image_tag 'robot.png'
+      .message style="white-space: inherit;"
+        | よかったらFacebookでログインして意見をお聞かせください。
+        br
+        = link_to 'Facebookでログイン', user_omniauth_authorize_path(:facebook), class: 'btn-facebook'
 
-#spot-im-root
-javascript:
-  !function(t,o,p){function e(){var t=o.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==o.location.protocol?"https":"http")+":"+p,o.body.appendChild(t)}t.spotId="cd5023a7343e7073d1c9394de6cd49d9",t.spotName="",t.allowDesktop=!0,t.allowMobile=!1,t.containerId="spot-im-root",e()}(window.SPOTIM={},document,"//www.spot.im/embed/scripts/launcher.js");
+  .input-container
+    input#input-chat type="text"
+    input#btn-send type="submit"
+
+= form_tag(create_chat_path, remote: true, id: 'form-chat', method: :post) do
+  = hidden_field_tag :message, '', id: 'hidden-input-chat'
+
+coffee:
+  window.phase = 0
+  window.chats = [
+    { content: 'はじめまして。', type: 'anything' },
+    { content: '今回はご利用ありがとうございました。', type: 'anything' },
+    { content: '現在、このシステムの開発を行っている健と申します。よろしくお願い致します。', type: 'anything' },
+    { content: 'もしよろしければ、アンケートにご協力いただけないでしょうか。', type: 'yesno', yes: 'ありがとうございます！', no: 'そうですか・・分かりました。またのご利用をお待ちしております。今回はありがとうございました。', no_end: true },
+    { content: '性別は男ですか？女ですか？', type: 'selection', selections: [{id: 0, name: '男'}, {id: 1, name: '女'}] }
+  ]
+  window.nextChat = ->
+    clearTimeout(window.timeout_timer) if window.timeout_timer?
+
+    if window.reply_type == 'yesno'
+      window.phase -= 1
+    window.waiting_chat_timer = setTimeout(->
+      window.waiting_chat_timer = null
+      yesno_response = false
+      if window.reply_type == 'yesno'
+        if window.negative == true
+          chat = window.chats[window.phase].no
+          if window.chats[window.phase].no_end? && window.chats[window.phase].no_end == true
+            window.waiting_chat_timer = true
+        else
+          chat = window.chats[window.phase].yes
+        yesno_response = true
+      else
+        chat = window.chats[window.phase].content
+      window.reply_type = window.chats[window.phase].type
+      if window.chats[window.phase].type == 'selection'
+        $('.input-container').hide()
+        window.talk.appendMessage(true, chat, window.chats[window.phase].selections)
+      else
+        window.talk.appendMessage(true, chat)
+      window.phase += 1
+      if yesno_response == true
+        window.reply_type = 'anything'
+      window.timeout_timer = setTimeout(window.nextChat, window.chats[window.phase].content.length * 1000 / 2.5) if window.reply_type == 'anything' || yesno_response == true
+    , window.chats[window.phase].content.length * 1000 / 2.5)
+
+  window.reply_type = 'anything'
+  window.timeout_timer = null
+  window.send = ->
+    $('#hidden-input-chat').val($('#input-chat').val())
+    $('#form-chat').submit()
+    return 0
+    window.talk.appendMessage(false, $('#input-chat').val())
+    v = $('#input-chat').val()
+    $('#input-chat').val('')
+    if window.waiting_chat_timer?
+      return 0
+    setTimeout(=>
+      if v.match(/(ばか|バカ|馬鹿|ぼけ|ボケ|アホ|あほ|死ね|しね|シネ)/)?
+        window.talk.appendMessage(true, 'そんなこと言わないでください。。あなたが初めてのユーザなので、とても嬉しいんです！')
+      else if v.match(/(分かりました|いいです|無理|むり|ムリ|はい|ハイ|いいえ|イイエ|YES|yes|Yes|no|NO|No|いいよ|大丈夫|どうぞ|駄目|ダメ|だめ|いや|嫌|イヤ)/)? && window.reply_type == 'yesno'
+        window.negative = false
+        window.negative = true if v.match(/(無理|ムリ|むり|いいえ|イイエ|no|NO|No|ダメ|だめ|駄目|いや|嫌|イヤ)/)?
+        window.nextChat()
+      else if window.reply_type == 'anything'
+        window.nextChat()
+      else
+        window.talk.appendMessage(true, ['(´・ω・`)', '・・・？', '回答をお願いしたいです。'][Math.floor(Math.random()*3)])
+
+    , 3000 + 5000 * Math.random())
+  $('#input-chat').on('keydown', (e) ->
+    if e.keyCode == 13
+      window.send()
+  )
+  $('#btn-send').on('click', window.send)
+
+  setTimeout(->
+    window.talk.appendMessage(true, 'ご購入ありがとうございます。現在はテスト中のため、無料でお試し頂けます。')
+  , 2000)
+  setTimeout(->
+    window.talk.appendMessage(true, '本サービスをよりよくするため、もしよろしければ、以下のチャットにお返事下さい。')
+  , 5000)
+  setTimeout(->
+    window.talk.appendMessage(true, '中の人を呼び出し中....')
+  , 7000)
+
+  window.popup_sns = ->
+    $('.sns-item').show()

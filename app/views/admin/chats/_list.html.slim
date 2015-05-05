@@ -1,0 +1,41 @@
+h4 チャットの管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_chat_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+
+div.data-list
+  = paginate @chats
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th 発言内容
+          th 発言者
+          th 発言日時
+      tbody
+        - @chats.each do |chat|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_chat_path( chat.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_chat_path( chat.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = chat.id
+            td
+              = chat.message
+            td
+              - if chat.user
+                = chat.user_id
+            td
+              = chat.created_at.strftime('%Y/%m/%d %H:%M:%S')
+
+  = paginate @chats

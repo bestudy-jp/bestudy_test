@@ -12,11 +12,14 @@ Rails.application.routes.draw do
     resources :answers
     resources :lessons
     resources :text_books
+    resources :chats
   end
 
   post 'lesson/:id/purchase' => 'lesson#purchase', as: :buy_lesson
   get 'lesson/:id' => 'lesson#show', as: :lesson_show
   get 'lesson/:id/result' => 'lesson#result', as: :lesson_result
+
+  post 'chats' => 'chat#create', as: :create_chat
 
   root to: 'top#index'
   get "home", to: "home#genre", as: "user_root"

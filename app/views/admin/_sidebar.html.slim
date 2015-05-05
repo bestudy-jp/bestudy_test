@@ -26,3 +26,9 @@
       h4.list-group-item-heading 教材
       p.list-group-item-text
         | 教材の管理を行います。
+
+  .list-group
+    = active_link_to( admin_chats_path, class: 'list-group-item' ) do
+      h4.list-group-item-heading チャット
+      p.list-group-item-text
+        | チャットの管理を行います。
