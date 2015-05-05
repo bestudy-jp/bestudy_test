@@ -10,9 +10,9 @@
 #
 
 class Genre < ActiveRecord::Base
-  has_many :genre_user_relation
+  has_many :genre_user_relation, dependent: :destroy
   belongs_to :parent_genre, foreign_key: :parent_genre_id, class_name: 'Genre'
-  has_many :lesson_skills
+  has_many :lesson_skills, dependent: :destroy
 
   def self.parents_scheme
     ret = []
