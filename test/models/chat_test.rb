@@ -8,6 +8,7 @@
 #  created_at :datetime
 #  updated_at :datetime
 #  admin_name :string(255)
+#  user_chat  :boolean          default(TRUE), not null
 #
 
 require 'test_helper'

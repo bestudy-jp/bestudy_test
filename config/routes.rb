@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'lesson/:id/result' => 'lesson#result', as: :lesson_result
 
   post 'chats' => 'chat#create', as: :create_chat
+  post 'chats/more' => 'chat#more', as: :more_chat
 
   root to: 'top#index'
   get "home", to: "home#genre", as: "user_root"

@@ -20,6 +20,11 @@
 
         .modal-body
           .form-group
+            label
+              = f.check_box :user_chat, { checked: @chat.user_chat, class: 'form-control' }, 'true', 'false'
+              | ユーザからのメッセージならチェック
+
+          .form-group
             = f.label :message, 'メッセージ'
             = f.text_field :message, :class => 'form-control'
           .form-group

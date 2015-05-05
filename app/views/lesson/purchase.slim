@@ -1,6 +1,6 @@
 
-.talk-container
-  ul
+.talk-container.purchase
+  ul.chat
     li.chat
       = image_tag 'robot.png'
       .message style="white-space: inherit;"
@@ -14,6 +14,17 @@
 
 = form_tag(create_chat_path, remote: true, id: 'form-chat', method: :post) do
   = hidden_field_tag :message, '', id: 'hidden-input-chat'
+
+= form_tag(more_chat_path, remote: true, id: 'form-chat-more', method: :post) do
+  - chat_30mins_ago = Chat.where('created_at >= ?', DateTime.now - 30.minutes).order('id ASC').first
+  - if chat_30mins_ago
+    - cid = chat_30mins_ago.id
+    - from = chat_30mins_ago.created_at.strftime('%Y/%m/%d %H:%M:%S')
+  - else
+    - cid = 0
+    - from = DateTime.now.strftime('%Y/%m/%d %H:%M:%S')
+  = hidden_field_tag :last_chat_id, cid, id: 'hidden-input-last-chat-id'
+  = hidden_field_tag :from, from, id: 'hidden-input-from'
 
 coffee:
   window.phase = 0
@@ -92,6 +103,9 @@ coffee:
   , 5000)
   setTimeout(->
     window.talk.appendMessage(true, '中の人を呼び出し中....')
+    setInterval(->
+      $('#form-chat-more').submit()
+    , 5000)
   , 7000)
 
   window.popup_sns = ->

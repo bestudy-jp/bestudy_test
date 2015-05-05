@@ -8,4 +8,16 @@ class ChatController < ApplicationController
     end
     render layout: false
   end
+
+  def more
+    date = DateTime.parse(params[:from])
+    lid = params[:last_chat_id]
+    date = DateTime.now - 30.minutes if date + 30.minutes < DateTime.now
+    @chats = []
+    Chat.where('id > ? AND created_at > ?', lid, date).each do |chat|
+      @chats.push(chat)
+    end
+
+    render layout: false
+  end
 end
