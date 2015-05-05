@@ -1,12 +1,18 @@
 .purchase-container
   - if user_signed_in?
     p ご購入ありがとうございます。現在はテスト中のため、無料でお試し頂けます。
-    .btn-container
+    p もしよろしければ、ご連絡下さい。
+    /.btn-container
       a href="#" 学習を始める
       br
       = link_to '他のオススメレッスンを確認する', '/home/done'
 
   - else
-    p ありがとうございます。ご購入いただくには、ユーザ登録が必要です。Facebookにてログインしてご利用ください。
-    .btn-container
+    p ご購入ありがとうございます。現在はテスト中のため、無料でお試し頂けます。
+    p もしよろしければ、ご連絡下さい。
+    /.btn-container
       = link_to 'Facebookでログイン', user_omniauth_authorize_path(:facebook), class: 'btn-facebook'
+
+#spot-im-root
+javascript:
+  !function(t,o,p){function e(){var t=o.createElement("script");t.type="text/javascript",t.async=!0,t.src=("https:"==o.location.protocol?"https":"http")+":"+p,o.body.appendChild(t)}t.spotId="cd5023a7343e7073d1c9394de6cd49d9",t.spotName="",t.allowDesktop=!0,t.allowMobile=!1,t.containerId="spot-im-root",e()}(window.SPOTIM={},document,"//www.spot.im/embed/scripts/launcher.js");
