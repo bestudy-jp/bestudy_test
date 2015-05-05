@@ -44,7 +44,10 @@ div.data-list
                 br
             td
               - lesson.match_rates.includes(:answer).each do |mr|
-                = "#{ mr.answer.body } (#{ mr.rate }%)"
+                - if mr.answer
+                  = "#{ mr.answer.body } (#{ mr.rate }%)"
+                - else
+                  = "(不明) (#{ mr.rate }%)"
                 br
 
   = paginate @lessons

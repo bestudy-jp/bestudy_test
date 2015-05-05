@@ -41,6 +41,9 @@
   .radar
     canvas#radar width="240" height="240"
 
+  .serif.bottom-link
+    = link_to 'もう一度診断してみたい方はこちら', select_genre_path
+
 - answer_ids = JSON.parse(session[:answer_ids])
 - radar_points = Answer.radar_points_from_answer_ids(answer_ids)
 javascript:
