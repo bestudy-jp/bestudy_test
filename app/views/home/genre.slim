@@ -7,6 +7,9 @@
     span 学習開始
   ul
 
+  .retry-container
+    = link_to 'もう一度診断してみる', select_genre_path
+
   = form_tag(judge_path, id: 'form-judge', remote: true) do
     = hidden_field_tag :choices, '', id: 'input-choices'
 

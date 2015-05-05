@@ -33,8 +33,11 @@ class HomeController < ApplicationController
     answer = Answer.where(id: choices.last.to_i).first
     unless answer
       @messages.push(
-        content: 'そんな分野は知りません・・・'
+        content: 'そんな分野は知りません・・・',
+        delay: 2000
       )
+      @not_found = true
+      @retry_delay = 4000
       return
     end
     @self_message = answer.body + '！'
@@ -73,8 +76,15 @@ class HomeController < ApplicationController
         end
       else
         @messages.push(
-          content: 'おすすめのレッスンが見つかりませんでした。ごめんね。'
+          content: 'う〜ん・・・。',
+          delay: 3000
         )
+        @messages.push(
+          content: 'おすすめのレッスンが見つかりませんでした。ごめんね。',
+          delay: 7000
+        )
+        @not_found = true
+        @retry_delay = 9000
       end
       session[:recommended_lesson_ids] = JSON.generate(session[:recommended_lesson_ids])
       session[:answer_ids] = JSON.generate(choices)

@@ -25,5 +25,11 @@ setTimeout(->
 , 1500)
 <% end %>
 
+<% if @not_found %>
+setTimeout(->
+  $('.retry-container').show()
+, <%= @retry_delay %>)
+<% end %>
+
 if ga?
   ga('send', { 'hitType': 'event', 'eventCategory': 'answer<%= @choice %>', eventAction: 'click', 'eventLabel': '<%= params[:choices] %>' })

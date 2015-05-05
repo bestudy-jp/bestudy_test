@@ -26,6 +26,18 @@ $message-self-background-color: rgb(87, 67, 22)
 
 .talk-container
   position: relative
+  .retry-container
+    width: 100%
+    text-align: center
+    position: fixed
+    bottom: 40px
+    display: none
+    > a
+      padding: 10px 20px
+      background-color: #E2A470
+      @include border-radius(4px)
+      color: white
+      @include text-shadow(1px 1px 1px rgba(0, 0, 0, 0.3))
   h2
     margin: 0
     padding: 4px 10px
