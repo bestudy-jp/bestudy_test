@@ -1,1 +1,1 @@
-window.talk.appendMessage(false, '<%= raw @chat.message %>')
+$('#input-chat').val('')
