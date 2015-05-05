@@ -15,9 +15,10 @@ div.data-list
         tr
           th
           th = sort_link( @search, :id, 'ID' )
+          th 種別
           th 発言内容
-          th 発言者
-          th 発言日時
+          th ユーザID
+          th = sort_link( @search, :created_at, '発言日時' )
       tbody
         - @chats.each do |chat|
           tr
@@ -30,6 +31,8 @@ div.data-list
                 | &nbsp;削除
             td.right
               = chat.id
+            td align="center"
+              = chat.user_chat ? 'ユーザ' : chat.admin_name
             td
               = chat.message
             td
