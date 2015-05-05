@@ -21,7 +21,7 @@
         .modal-body
           .form-group
             = f.label :question_type, '質問種別'
-            = f.select :question_type, options_for_select(Question::QuestionType::SELECT, @question.question_type), {}, class: 'form-control'
+            = f.select :question_type, options_for_select(Question::QuestionType::SELECT, selected: @question.question_type), {}, class: 'form-control'
           .form-group.test-input
             = f.label :genre_id, '能力判定の対象スキル'
             = f.select :genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent, @question.genre_id), {}, class: 'form-control'
