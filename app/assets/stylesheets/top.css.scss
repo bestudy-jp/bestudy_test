@@ -587,18 +587,26 @@ body .header {
   margin-bottom: 30px;
 }
 
-.bestudy-flow tbody tr td {
-  background-color: white;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.bestudy-flow-container {
   text-align: center;
-  font-size: 11px;
-  height: 160px;
-  vertical-align: top;
-  img {
-    width: 80%;
-    display: block;
+  background-color: white;
+  .bestudy-flow {
     margin: 0 auto;
-    margin-bottom: 4px;
+    tbody tr td {
+      background-color: white;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      text-align: center;
+      font-size: 11px;
+      height: 160px;
+      vertical-align: top;
+      color: rgb(52, 52, 52);
+      img {
+        width: 80%;
+        display: block;
+        margin: 0 auto;
+        margin-bottom: 4px;
+      }
+    }
   }
 }
