@@ -1,0 +1,37 @@
+h4 スキルの管理
+
+.operation-panel.panel.panel-default
+  .panel-body
+    = link_to new_admin_genre_path, :remote => true, :class => 'btn btn-success' do
+      span.glyphicon.glyphicon-plus
+      | &nbsp;新規登録
+
+div.data-list
+  = paginate @genres
+
+  .table-responsive
+    table.table.table-hover.table-condensed.table-bordered
+      thead
+        tr
+          th
+          th = sort_link( @search, :id, 'ID' )
+          th スキル名
+          th スキル名（親付き）
+      tbody
+        - @genres.each do |genre|
+          tr
+            td.basic-operations.left
+              = link_to edit_admin_genre_path( genre.id ), :class => 'btn btn-success btn-xs', :remote => true do
+                span.glyphicon.glyphicon-pencil
+                | &nbsp;編集
+              = link_to admin_genre_path( genre.id ), :class => 'btn btn-danger btn-xs js-btn-delete', :remote => true, :method => :delete do
+                span.glyphicon.glyphicon-remove
+                | &nbsp;削除
+            td.right
+              = genre.id
+            td
+              = genre.name
+            td
+              = genre.decorate.name_with_parent
+
+  = paginate @genres

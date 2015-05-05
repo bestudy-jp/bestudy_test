@@ -1,0 +1,31 @@
+- unless @genre
+  - @genre = Genre.new
+  - @title = 'スキルの新規登録'
+  - @button_caption = '登録する'
+  - form_for_path = admin_genres_path
+- else
+  - @title = 'スキルの編集'
+  - @button_caption = '更新する'
+  - form_for_path = admin_genre_path
+
+= form_for( @genre, url: form_for_path, :html => { :class => :form, :id => 'formGenre' }, :remote => true ) do |f|
+  .modal.fade#modalForm tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true"
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close type="button" data-dismiss="modal" aria-hidden="true"
+            | &times;
+          h4.modal-title#modalTitle
+            = @title
+
+        .modal-body
+          .form-group
+            = f.label :name, 'スキル名'
+            = f.text_field :name, :class => 'form-control'
+          .form-group
+            = f.label :parent_genre_id, '親ジャンル'
+            = f.select :parent_genre_id, options_from_collection_for_select(Genre.all.decorate, :id, :name_with_parent, @genre.parent_genre_id), {include_blank: '親ジャンルなし'}, class: 'form-control'
+
+        .modal-footer
+          button.btn.btn-default type="button" data-dismiss="modal" 閉じる
+          = f.submit @button_caption, :class => 'btn btn-primary', 'data-submit-for' => 'formGenre'
