@@ -33,7 +33,8 @@ div.data-list
             td
               = answer.body
             td
-              = answer.question.body
+              - if answer.question
+                = answer.question.body
             td.center
               - answer.radar_points.each do |radar|
                 = "#{ radar.name } (#{ radar.point })"

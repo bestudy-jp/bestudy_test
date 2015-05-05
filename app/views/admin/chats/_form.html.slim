@@ -22,6 +22,9 @@
           .form-group
             = f.label :message, 'メッセージ'
             = f.text_field :message, :class => 'form-control'
+          .form-group
+            = f.label :admin_name, '管理者名'
+            = f.text_field :admin_name, :class => 'form-control'
 
         .modal-footer
           button.btn.btn-default type="button" data-dismiss="modal" 閉じる
