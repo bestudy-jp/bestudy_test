@@ -4,7 +4,13 @@
   .recommend-container
     = image_tag 'robot.png'
     .serif
-      | あなたにオススメの教材はこれです！
+      | あなたはWebエンジニアタイプ
+
+  .radar
+    canvas#radar width="300" height="300"
+
+  .serif
+    | あなたにオススメの教材はこれです！
 
   - lesson_ids = JSON.parse(session[:recommended_lesson_ids])
   - lessons = Lesson.where(id: lesson_ids).to_a
@@ -24,3 +30,16 @@
               = lesson.title
             span.author = lesson.author
             span.price = lesson.price
+
+coffee:
+  rc = new html5jp.graph.radar('radar')
+  items = [
+    ['ほげ太郎さん', 5, 2, 3, 2, 2, 4]
+  ]
+  params = {
+    aCap: ['スクリプト言語', 'サーバ', 'マークアップ', 'セキュリティ', 'ユーザビリティ', 'テスト'],
+    chartShape: 'circle',
+    sLabel: false,
+    legend: false
+  }
+  rc.draw(items, params)

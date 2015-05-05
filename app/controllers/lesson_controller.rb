@@ -1,4 +1,6 @@
 class LessonController < ApplicationController
+  before_action :authenticate_user!, only: [:result]
+
   def show
     @lesson = Lesson.find(params[:id]) if params[:id]
   end
@@ -17,5 +19,11 @@ class LessonController < ApplicationController
     else
       session[:user_return_to] = lesson_show_path(@lesson.id)
     end
+  end
+
+  def result
+    @lesson = Lesson.find(params[:id]) if params[:id]
+    redirect_to user_root_path unless @lesson
+    redirect_to user_root_path unless current_user.bought?(@lesson)
   end
 end

@@ -34,6 +34,7 @@ class User < ActiveRecord::Base
   validates :password, presence: false, on: :facebook_login
   has_many :genre_user_relation
   has_many :genre, through: :genre_user_relation
+  has_many :user_purchases
 
   def self.find_for_facebook_oauth(auth)
     user = User.where(provider: auth.provider, uid: auth.uid).first
@@ -78,6 +79,10 @@ class User < ActiveRecord::Base
   def update_profile!
     update_profile
     save!
+  end
+
+  def bought?(lesson)
+    user_purchases.exists?(lesson_id: lesson.id)
   end
 
   private

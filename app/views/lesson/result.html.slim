@@ -1,0 +1,44 @@
+.radar-container
+  h2 ベスタくん
+
+  .recommend-container
+    = image_tag 'robot.png'
+    .serif
+      | あなたはWebエンジニアタイプ
+
+  .radar
+    canvas#radar width="300" height="300"
+
+  .skill-list-container
+    ul
+      li
+        span.star ★
+        | スクリプト言語
+      li
+        span.star ☆
+        | テスト
+      li
+        span.circle ●
+        | マークアップ
+      li
+        span.triangle ▲
+        | サーバ
+      li
+        span.triangle ▲
+        | セキュリティ
+      li
+        span.triangle ▲
+        | ユーザビリティ
+
+coffee:
+  rc = new html5jp.graph.radar('radar')
+  items = [
+    ['ほげ太郎さん', 5, 2, 3, 2, 2, 4]
+  ]
+  params = {
+    aCap: ['スクリプト言語', 'サーバ', 'マークアップ', 'セキュリティ', 'ユーザビリティ', 'テスト'],
+    chartShape: 'circle',
+    sLabel: false,
+    legend: false
+  }
+  rc.draw(items, params)

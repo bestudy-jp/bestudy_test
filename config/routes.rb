@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   post 'lesson/:id/purchase' => 'lesson#purchase', as: :buy_lesson
   get 'lesson/:id' => 'lesson#show', as: :lesson_show
+  get 'lesson/:id/result' => 'lesson#result', as: :lesson_result
 
   root to: 'top#index'
   get "home", to: "home#genre", as: "user_root"
