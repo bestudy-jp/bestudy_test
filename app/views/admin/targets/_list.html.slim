@@ -33,7 +33,10 @@ div.data-list
               = target.name
             td
               - target.target_skills.each do |ts|
-                = "#{ ts.genre.name } (#{ ts.point })"
+                - if ts.genre
+                  = "#{ ts.genre.name } (#{ ts.point })"
+                - else
+                  = "(削除済) (#{ ts.point })"
                 br
 
   = paginate @targets
