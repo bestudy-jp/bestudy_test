@@ -586,3 +586,19 @@ body .header {
 #new_inquiry {
   margin-bottom: 30px;
 }
+
+.bestudy-flow tbody tr td {
+  background-color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  font-size: 11px;
+  height: 160px;
+  vertical-align: top;
+  img {
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 4px;
+  }
+}
