@@ -8,6 +8,7 @@ class LessonController < ApplicationController
   def purchase
     @lesson = Lesson.find(params[:id]) if params[:id]
     redirect_to 'home' && return unless @lesson
+    Notification.purchase.deliver(@lesson)
 
     session[:user_return_to] = nil
     if user_signed_in?
