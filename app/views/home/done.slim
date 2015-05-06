@@ -39,26 +39,33 @@
     | あなたの能力は・・・
 
   .radar
-    canvas#radar width="240" height="240"
+    canvas#radar width="360" height="240"
 
   .serif.bottom-link
     = link_to 'もう一度診断してみたい方はこちら', select_genre_path
 
 - answer_ids = JSON.parse(session[:answer_ids])
 - radar_points = Answer.radar_points_from_answer_ids(answer_ids)
+- target = nil
+- Answer.where(id: answer_ids).each do |ans|
+  - target = ans.target if ans.question.selection?
+- target_points = target.radar_points
 javascript:
   var fields = JSON.parse('#{ raw JSON.generate(radar_points.keys) }');
-  var points = ['Dummy'].concat(JSON.parse('#{ raw JSON.generate(radar_points.values) }'));
+  var points = ['あなた'].concat(JSON.parse('#{ raw JSON.generate(radar_points.values) }'));
+  var target_points = ['目標'].concat(JSON.parse('#{ raw JSON.generate(target_points.values) }'));
 
 coffee:
   rc = new html5jp.graph.radar('radar')
   items = [
-    points
+    points, target_points
   ]
   params = {
     aCap: fields,
     chartShape: 'circle',
     sLabel: false,
-    legend: false
+    legend: true,
+    aMax: 5,
+    aMin: 0
   }
   rc.draw(items, params)
