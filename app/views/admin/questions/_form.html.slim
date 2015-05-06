@@ -20,6 +20,10 @@
 
         .modal-body
           .form-group
+            label
+              = f.check_box :initial, { checked: @question.initial }, 'true', 'false'
+              | 初期質問
+          .form-group
             = f.label :question_type, '質問種別'
             = f.select :question_type, options_for_select(Question::QuestionType::SELECT, selected: @question.question_type), {}, class: 'form-control'
           .form-group.test-input

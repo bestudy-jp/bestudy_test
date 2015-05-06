@@ -30,6 +30,7 @@ class Question < ActiveRecord::Base
   end
 
   scope :parent_questions, -> { where.not(id: QuestionPreAnswer.pluck(:question_id)) }
+  scope :initial, -> { where(initial: true) }
   scope :selection, -> { where(question_type: QuestionType::SELECTION) }
   scope :test, -> { where(question_type: QuestionType::TEST) }
 

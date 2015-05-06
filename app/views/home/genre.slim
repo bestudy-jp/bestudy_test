@@ -13,7 +13,7 @@
   = form_tag(judge_path, id: 'form-judge', remote: true) do
     = hidden_field_tag :choices, '', id: 'input-choices'
 
-  - question = Question.parent_questions.shuffle.first
+  - question = Question.initial.shuffle.first
 
 javascript:
   answers = [];
