@@ -16,7 +16,7 @@
   .recommend-container
     .serif
       | あなたはズバリ
-      span.strong = target.name + 'タイプ'
+      span.strong = target.name
 
   .radar
     canvas#radar width="320" height="240"
@@ -33,10 +33,7 @@
       - lesson = lesson.decorate
       li.lesson-item
         = link_to lesson_show_path(lesson.id) do
-          - if lesson.text_books.first && lesson.text_books.first.pages.count > 0
-            = image_tag lesson.text_books.first.pages.first.image.url(:thumb2x), width: 156, height: 117
-          - else
-            = image_tag 'now_printing.gif', width: 156, height: 117
+          = image_tag lesson.thumbnail.url(:thumb2x)
           .detail-container
             .title
               = lesson.title
