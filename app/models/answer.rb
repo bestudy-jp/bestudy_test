@@ -22,11 +22,12 @@ class Answer < ActiveRecord::Base
 
   def self.radar_points_from_answer_ids(answer_ids)
     ret = {}
-    Answer.where(id: answer_ids).includes(:radar_points).each do |answer|
-      next if answer.radar_points.count <= 0
-      answer.radar_points.each do |rp|
-        ret[rp.name] ||= 0
-        ret[rp.name] += rp.point
+    Answer.where(id: answer_ids).each do |answer|
+      if answer.question.test?
+        ret[answer.question.genre.name] ||= 0
+        ret[answer.question.genre.name] += answer.level
+      elsif answer.question.selection?
+
       end
     end
     ret

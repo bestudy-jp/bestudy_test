@@ -14,6 +14,7 @@ class Question < ActiveRecord::Base
   has_many :question_pre_answers
   has_many :pre_answers, through: :question_pre_answers, source: :answer
   has_many :answers
+  belongs_to :genre
 
   scope :parent_questions, -> { where.not(id: QuestionPreAnswer.pluck(:question_id)) }
 
@@ -28,6 +29,14 @@ class Question < ActiveRecord::Base
       '目標設定' => SELECTION,
       '能力判定' => TEST
     }
+  end
+
+  def test?
+    QuestionType::TEST == question_type
+  end
+
+  def selection?
+    QuestionType::SELECTION == question_type
   end
 
   def answers_scheme
