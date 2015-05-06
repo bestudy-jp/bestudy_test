@@ -25,13 +25,6 @@
           .form-group
             = f.label :question_id, '親質問'
             = f.select :question_id, options_from_collection_for_select(Question.all, :id, :body, @answer.question_id), {}, class: 'form-control'
-          .form-group
-            = f.label :radar_points, 'レーダーチャートのポイント'
-            ul
-              = f.fields_for :radar_points do |qpaf|
-                = render 'radar_point_fields', f: qpaf
-              li
-                = link_to_add_association 'レーダーチャートの要素を追加', f, :radar_points, class: 'btn btn-xs btn-success'
 
         .modal-footer
           button.btn.btn-default type="button" data-dismiss="modal" 閉じる

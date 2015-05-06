@@ -16,8 +16,6 @@ class Question < ActiveRecord::Base
   has_many :answers
   belongs_to :genre
 
-  scope :parent_questions, -> { where.not(id: QuestionPreAnswer.pluck(:question_id)) }
-
   accepts_nested_attributes_for :answers, allow_destroy: true
   accepts_nested_attributes_for :question_pre_answers, allow_destroy: true
 
@@ -30,6 +28,10 @@ class Question < ActiveRecord::Base
       '能力判定' => TEST
     }
   end
+
+  scope :parent_questions, -> { where.not(id: QuestionPreAnswer.pluck(:question_id)) }
+  scope :selection, -> { where(question_type: QuestionType::SELECTION) }
+  scope :test, -> { where(question_type: QuestionType::TEST) }
 
   def test?
     QuestionType::TEST == question_type
