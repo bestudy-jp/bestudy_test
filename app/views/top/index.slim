@@ -24,13 +24,13 @@
   .row#headerwrap name="home"
     header.clearfix
       i.fa.fa-dashboard.icon
-      h1#catch_copy あなたにとって最高の学習を人工知能が提供
+      h1 あなたにとって最高の学習を人工知能が提供
       p 学ぶ意欲のある人が効率的に学べ、やる気を成果に変換するお手伝いをします。
       = link_to 'まずは診断してみよう！', select_genre_path, class: 'smoothScroll btn btn-lg text-center'
       .info
         = link_to '能力を診断して目標を定めるにはこちら', select_genre_path
 
-.container-fluid
+.container-fluid#services name="services"
   .row.bestudy-flow-container
     table.bestudy-flow
       tbody
@@ -47,23 +47,6 @@
             = image_tag 'learn.png'
             .description
               | 効率よく学習が進みます。
-  .row.white#about name="about"
-    h2.centered ABOUT US
-    hr
-    .col-md-6 = image_tag 'about/about1.jpg', width: '100%'
-    .col-md-6
-      h3 私達は
-      p 私たちは人工知能と教育工学の研究者達です。
-      h3 何がすごいのか
-      p
-        | 私たちは人工知能と教育工学を扱う専門家集団です。
-        | 「何かに向かって努力する人達を応援したい。この世の中をよ
-        | りワクワクする世界にしたい。」
-        | という理念をもとに人々の学習を人工知能と教育工学の技術
-        | で、全く新しい学習体験を提供します。
-  = link_to 'まずは診断してみよう！', select_genre_path, class: 'smoothScroll btn btn-lg center-block'
-
-.container-fluid#services name="services"
   .row-fluid
     h2.centered OUR SERVICES
     hr
@@ -90,6 +73,24 @@
         | 最適なプランを常に提案
       p 使えば使うほどあなたの特性を理解し、常に最適なプランを提案
 = link_to 'まずは診断してみよう！', select_genre_path, class: 'smoothScroll btn btn-lg btn-try center-block'
+
+.container-fluid
+  .row.white#about name="about"
+    h2.centered ABOUT US
+    hr
+    .col-md-6 = image_tag 'about/about1.jpg', width: '100%'
+    .col-md-6
+      h3 私達は
+      p 私たちは人工知能と教育工学の研究者達です。
+      h3 何がすごいのか
+      p
+        | 私たちは人工知能と教育工学を扱う専門家集団です。
+        | 「何かに向かって努力する人達を応援したい。この世の中をよ
+        | りワクワクする世界にしたい。」
+        | という理念をもとに人々の学習を人工知能と教育工学の技術
+        | で、全く新しい学習体験を提供します。
+  = link_to 'まずは診断してみよう！', select_genre_path, class: 'smoothScroll btn btn-lg center-block'
+
 
 .container-fluid#contact name="contact"
   .row-fluid
