@@ -2,9 +2,7 @@
   .header
     a.btn-back
       | ←
-  - if @lesson.text_books.count > 0
-    - if @lesson.text_books.first.pages.count > 0
-      = image_tag @lesson.text_books.first.pages.first.image.url
+  = image_tag @lesson.thumbnail.url
 
   .lesson-info-container
     span.student #{ UserPurchase.where(lesson_id: @lesson.id).count }人の受講生
