@@ -14,11 +14,8 @@
 class Answer < ActiveRecord::Base
   has_many :match_rates
   has_many :lesson ,  through: :match_rate
-  has_many :radar_points
   belongs_to :question
   belongs_to :target
-
-  accepts_nested_attributes_for :radar_points, allow_destroy: true
 
   def self.radar_points_from_answer_ids(answer_ids)
     ret = {}
