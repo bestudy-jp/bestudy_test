@@ -1,5 +1,8 @@
 class @Talk
   choices: []
+  clearChoices: =>
+    @choices = []
+
   appendMessage: (robot, message, selections, name) =>
     chat_dom = $('<li>').addClass('chat')
     chat_dom.addClass('self') if robot == false
