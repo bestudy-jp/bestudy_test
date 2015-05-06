@@ -27,6 +27,7 @@ setTimeout(->
 
 <% if @not_found %>
 setTimeout(->
+  window.talk.clearChoices()
   $('.retry-container').show()
 , <%= @retry_delay %>)
 <% end %>
