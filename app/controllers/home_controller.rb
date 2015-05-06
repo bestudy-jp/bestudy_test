@@ -68,6 +68,7 @@ class HomeController < ApplicationController
         next unless answer.target
         answer.target.target_skills.each do |ts|
           ts.genre.lesson_skills.each do |ls|
+            next if !radar_points[ls.genre.name].nil? && ls.need_point + 1 != radar_points[ls.genre.name]
             lessons[ls.lesson_id] ||= 0
             lessons[ls.lesson_id] += ls.need_point - radar_points[ls.genre.name]
           end
