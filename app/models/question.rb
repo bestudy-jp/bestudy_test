@@ -22,14 +22,17 @@ class Question < ActiveRecord::Base
   module QuestionType
     SELECTION = 'selection'
     TEST = 'test'
+    INITIAL = 'initial'
 
     SELECT = {
       '目標設定' => SELECTION,
-      '能力判定' => TEST
+      '能力判定' => TEST,
+      '初期質問' => INITIAL
     }
   end
 
   scope :parent_questions, -> { where.not(id: QuestionPreAnswer.pluck(:question_id)) }
+  scope :initial, -> { where(question_type: QuestionType::INITIAL) }
   scope :selection, -> { where(question_type: QuestionType::SELECTION) }
   scope :test, -> { where(question_type: QuestionType::TEST) }
 
