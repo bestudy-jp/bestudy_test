@@ -7,7 +7,7 @@
       = image_tag @lesson.text_books.first.pages.first.image.url
 
   .lesson-info-container
-    span.student 10人の受講生
+    span.student #{ UserPurchase.where(lesson_id: @lesson.id).count }人の受講生
 
   h2 = @lesson.title
 
