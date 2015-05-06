@@ -13,4 +13,13 @@ class Target < ActiveRecord::Base
   has_many :answers
 
   accepts_nested_attributes_for :target_skills, allow_destroy: true
+
+  def radar_points
+    ret = {}
+    target_skills.each do |ts|
+      ret[ts.genre.name] ||= 0
+      ret[ts.genre.name] += ts.point
+    end
+    ret
+  end
 end

@@ -36,10 +36,7 @@ class Admin::AnswersController < ApplicationController
 
   def answer_params
     params.require(:answer).permit(
-      :question_id, :body, :level, :target_id,
-      radar_points_attributes: [
-        :id, :name, :point, :_destroy
-      ]
+      :question_id, :body, :level, :target_id
     )
   end
 

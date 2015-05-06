@@ -7,12 +7,22 @@
       = image_tag @lesson.text_books.first.pages.first.image.url
 
   .lesson-info-container
-    span.student 10人の受講生
+    span.student #{ UserPurchase.where(lesson_id: @lesson.id).count }人の受講生
 
   h2 = @lesson.title
 
   .content-container
     = @lesson.body
+
+    ul.text-books
+      - @lesson.text_books.each do |textbook|
+        li
+          - if textbook.pages.count > 0
+            = image_tag textbook.pages.first.image.url(:list_thumb2x), width: 80, height: 60
+          - else
+            = image_tag 'now_printing.png', width: 80, height: 60
+          .title
+            = textbook.name
 
   .purchase-container
     = link_to 'このレッスンを購入', buy_lesson_path(@lesson.id), method: :post

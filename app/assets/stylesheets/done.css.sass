@@ -6,7 +6,7 @@
   .radar
     width: 100% !important
     text-align: center
-    margin-bottom: 30px
+    margin-bottom: 10px
     margin-top: 6px
     canvas
       @include border-radius(6px)
@@ -151,6 +151,8 @@
     background-color: white
     font-weight: normal
     @include text-shadow(none)
+    border-bottom: 1px solid black
+    border-top: 1px solid black
   .content-container
     white-space: pre-line
     padding: 4px
@@ -158,6 +160,30 @@
     font-size: 14px
     color: rgb(100, 100, 100)
     background-color: white
+    ul.text-books
+      margin: 10px 0
+      padding: 0
+      line-height: 0
+      li
+        height: 64px
+        position: relative
+        padding-left: 82px
+        margin-bottom: 4px
+        padding-bottom: 4px
+        border-bottom: 1px solid rgb(237, 237, 237)
+        &:last-child
+          border-bottom: 0
+          margin-bottom: 0
+        > img
+          position: absolute
+          left: 0
+          top: 0
+        .title
+          height: 100%
+          width: 100%
+          display: inline-block
+          font-size: 13px
+          line-height: 15px
   .purchase-container
     position: fixed
     bottom: 0

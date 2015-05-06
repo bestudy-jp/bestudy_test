@@ -36,6 +36,15 @@ class Admin::TextBooksController < ApplicationController
     render layout: false
   end
 
+  def regenerate_thumbs
+    TextBook.all.each do |textbook|
+      textbook.pages.each do |page|
+        page.image.recreate_versions!
+        page.save!
+      end
+    end
+  end
+
   private
 
   def text_book_params

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'questions#index'
+    get 'text_books/regenerate_thumbs' => 'text_books#regenerate_thumbs'
     resources :targets
     resources :genres
     resources :questions

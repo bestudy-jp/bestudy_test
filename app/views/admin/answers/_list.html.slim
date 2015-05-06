@@ -17,7 +17,6 @@ div.data-list
           th = sort_link( @search, :id, 'ID' )
           th 回答内容
           th 親質問
-          th レーダーチャート要素
       tbody
         - @answers.each do |answer|
           tr
@@ -35,9 +34,5 @@ div.data-list
             td
               - if answer.question
                 = answer.question.body
-            td.center
-              - answer.radar_points.each do |radar|
-                = "#{ radar.name } (#{ radar.point })"
-                br
 
   = paginate @answers

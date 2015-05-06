@@ -26,11 +26,18 @@ class HomeController < ApplicationController
   end
 
   def judge
-    choices = params[:choices].split(',')
+    choices = params[:choices].split(',').map(&:to_i)
+    answers = Answer.where(id: choices)
+    done_question_ids = []
+    target = nil
+    answers.each do |ans|
+      done_question_ids.push ans.question.id
+      target = ans.target if ans.question.selection?
+    end
     @choice = choices.last
     @messages = []
 
-    answer = Answer.where(id: choices.last.to_i).first
+    answer = Answer.where(id: choices.last).first
     unless answer
       @messages.push(
         content: 'そんな分野は知りません・・・',
@@ -41,8 +48,12 @@ class HomeController < ApplicationController
       return
     end
     @self_message = answer.body + '！'
-    question_pre = QuestionPreAnswer.where(answer_id: answer.id).shuffle.first
-    question = Question.where(id: question_pre.question_id).first if question_pre
+    if target
+      question = Question.test.where(genre_id: target.target_skills.pluck(:genre_id)).where.not(id: done_question_ids).shuffle.first
+    else
+      question_pre = QuestionPreAnswer.where(answer_id: answer.id).where.not(question_id: done_question_ids).shuffle.first
+      question = Question.where(id: question_pre.question_id).first if question_pre
+    end
     if question
       @messages.push(
         delay: 1000,
