@@ -243,8 +243,8 @@ a:before, a:after {
 	font-size: 20px;
 	margin-top: 40px;
 	color: #fff;
-    background:rgb(35,35,219);
-    border: 1px solid;
+    background: #395DCF;
+    box-shadow: 1px 1px #162247;
 	border: 0;
 }
 #headerwrap .info a {
@@ -254,7 +254,7 @@ a:before, a:after {
   font-size: 13px;
 }
 #headerwrap .btn:hover, #headerwrap .btn:focus {
-	background-color: #E2A470;
+	background-color: #688CFF;
 	outline: 0px;
 }
 #about {
