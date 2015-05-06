@@ -65,6 +65,7 @@ class HomeController < ApplicationController
       lessons = {}
       radar_points = Answer.radar_points_from_answer_ids(choices)
       Answer.where(id: choices).each do |answer|
+        next unless answer.target
         answer.target.target_skills.each do |ts|
           ts.genre.lesson_skills.each do |ls|
             lessons[ls.lesson_id] ||= 0
