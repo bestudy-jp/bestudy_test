@@ -2,7 +2,7 @@
   .header
     a.btn-back
       | ←
-  = image_tag @lesson.thumbnail.image.url
+  = image_tag @lesson.thumbnail.url
 
   .lesson-info-container
     span.student #{ UserPurchase.where(lesson_id: @lesson.id).count }人の受講生
