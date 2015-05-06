@@ -31,7 +31,7 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb2x do
-    process :resize_and_pad => [312, 234]
+    process :resize_and_pad => [80, 80]
   end
   version :list_thumb2x do
     process :resize_and_pad => [80, 60]
