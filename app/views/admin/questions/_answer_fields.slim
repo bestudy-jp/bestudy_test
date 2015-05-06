@@ -13,8 +13,8 @@ li.nested-fields
       .form-group
         = f.label :target_id, '設定目標'
         - if f.object
-          = f.select :target_id, options_from_collection_for_select(Target.all, :id, :name, f.object.target_id), {}, class: 'form-control'
+          = f.select :target_id, options_from_collection_for_select(Target.all, :id, :name, f.object.target_id), {include_blank: '設定なし'}, class: 'form-control'
         - else
-          = f.select :target_id, options_from_collection_for_select(Target.all, :id, :name), {}, class: 'form-control'
+          = f.select :target_id, options_from_collection_for_select(Target.all, :id, :name), {include_blank: '設定なし'}, class: 'form-control'
     .col-xs-2
       = link_to_remove_association '削除', f, class: 'btn btn-xs btn-danger'
