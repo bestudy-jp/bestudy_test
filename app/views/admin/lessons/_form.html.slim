@@ -44,15 +44,6 @@
               li
                 = link_to_add_association '教材を追加', f, :lesson_text_books, class: 'btn btn-xs btn-success'
 
-          h5 関連性のある回答
-
-          .form-group
-            ul.answers
-              = f.fields_for :match_rates do |mrf|
-                = render 'match_rate_fields', f: mrf
-              li
-                = link_to_add_association '関連性を追加', f, :match_rates, class: 'btn btn-xs btn-success'
-
           h5 スキル情報
 
           .form-group

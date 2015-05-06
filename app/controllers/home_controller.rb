@@ -63,10 +63,13 @@ class HomeController < ApplicationController
     else
       choices.map!(&:to_i)
       lessons = {}
-      Answer.where(id: choices).includes(:match_rates).each do |answer|
-        answer.match_rates.each do |mr|
-          lessons[mr.lesson_id] ||= 0
-          lessons[mr.lesson_id] += mr.rate
+      radar_points = Answer.radar_points_from_answer_ids(choices)
+      Answer.where(id: choices).each do |answer|
+        answer.target.target_skills.each do |ts|
+          ts.genre.lesson_skills.each do |ls|
+            lessons[ls.lesson_id] ||= 0
+            lessons[ls.lesson_id] += ls.need_point - radar_points[ls.genre.name]
+          end
         end
       end
       lesson_hashes = []
