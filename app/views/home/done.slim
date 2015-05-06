@@ -18,6 +18,9 @@
       | あなたはズバリ
       span.strong = target.name + 'タイプ'
 
+  .radar
+    canvas#radar width="320" height="240"
+
   .serif
     | あなたにオススメの教材は・・・
 
@@ -41,12 +44,6 @@
               = lesson.body
             span.author = lesson.author
             span.price = lesson.price
-
-  .serif
-    | あなたの能力は・・・
-
-  .radar
-    canvas#radar width="320" height="240"
 
   .serif.bottom-link
     = link_to 'もう一度診断してみたい方はこちら', select_genre_path

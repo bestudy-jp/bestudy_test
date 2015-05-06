@@ -33,6 +33,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :thumb2x do
     process :resize_and_pad => [312, 234]
   end
+  version :list_thumb2x do
+    process :resize_and_pad => [80, 60]
+  end
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
